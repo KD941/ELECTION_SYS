@@ -129,34 +129,34 @@ document.addEventListener('keydown', e => {
 // TIMELINE
 // ═══════════════════════════════════════════════════════════════
 const TIMELINE_DATA = [
-  { num:1, badge:'pre', badgeText:'Pre-Election', title:'Candidate Announcement', icon:'📢',
+  { num:1, badge:'pre', badgeText:'Pre-Election', title:'Candidate Announcement', icon:'',
     summary:'Potential candidates officially announce their intention to run, forming campaign committees and beginning fundraising.',
     detail:'Candidates file paperwork with the electoral commission, declare their candidacy publicly, and begin assembling their campaign team — including campaign managers, communications directors, and fundraisers. This phase can start years before the actual election.'},
-  { num:2, badge:'pre', badgeText:'Pre-Election', title:'Primary Elections / Caucuses', icon:'🏛️',
+  { num:2, badge:'pre', badgeText:'Pre-Election', title:'Primary Elections / Caucuses', icon:'',
     summary:'Voters within each party choose their preferred candidate through primaries (direct voting) or caucuses (public meetings).',
     detail:'Primaries are state-run elections where any registered party member can vote privately. Caucuses are party-organized public gatherings where voters openly group by candidate preference. Winners earn "delegates" who represent them at the national convention.'},
-  { num:3, badge:'pre', badgeText:'Pre-Election', title:'Party Conventions & Nominations', icon:'🎉',
+  { num:3, badge:'pre', badgeText:'Pre-Election', title:'Party Conventions & Nominations', icon:'',
     summary:'Each major party holds a national convention where delegates formally nominate their presidential and vice-presidential candidates.',
     detail:'Conventions are also where parties adopt their official platform — a detailed document outlining their policy positions and goals for the country. Running mates are typically announced just before or during the convention.'},
-  { num:4, badge:'pre', badgeText:'Campaign', title:'General Election Campaign', icon:'📣',
+  { num:4, badge:'pre', badgeText:'Campaign', title:'General Election Campaign', icon:'',
     summary:'Nominated candidates campaign nationwide — holding rallies, debating opponents, and running advertisements.',
     detail:'This phase includes presidential debates (and VP debates), intense media coverage, and billions in advertising spending. Campaign strategy focuses heavily on swing states or key constituencies that could go either way.'},
-  { num:5, badge:'vote', badgeText:'Election', title:'Voter Registration Deadline', icon:'📝',
+  { num:5, badge:'vote', badgeText:'Election', title:'Voter Registration Deadline', icon:'',
     summary:'Most regions require voters to register ahead of time. Deadlines vary — usually 15–30 days before Election Day.',
     detail:'Registration confirms your eligibility to vote and ensures your name appears on the official voter roll at your polling place. Some places offer same-day registration on Election Day itself. Check your state or country\'s specific rules at your electoral authority\'s website.'},
-  { num:6, badge:'vote', badgeText:'Election', title:'Election Day Voting', icon:'🗳️',
+  { num:6, badge:'vote', badgeText:'Election', title:'Election Day Voting', icon:'',
     summary:'Registered voters cast their ballots at polling stations or via mail/absentee ballots. Democracy in action.',
     detail:'Polling stations open in the morning and close in the evening. Officials check voter IDs, guide voters through the ballot, and ensure the process is secure and accessible. Many jurisdictions also allow early voting in the days leading up to Election Day.'},
-  { num:7, badge:'post', badgeText:'Post-Election', title:'Vote Counting & Certification', icon:'🔢',
+  { num:7, badge:'post', badgeText:'Post-Election', title:'Vote Counting & Certification', icon:'',
     summary:'Ballots are counted by election officials. Results are certified by state/national authorities — often taking days.',
     detail:'Absentee and mail-in ballots may take longer to process than in-person votes. Either candidate can request a recount if the margin is extremely close. Election observers (domestic and international) monitor this process for fairness.'},
-  { num:8, badge:'post', badgeText:'Post-Election', title:'Electoral College Vote (U.S.)', icon:'🏛️',
+  { num:8, badge:'post', badgeText:'Post-Election', title:'Electoral College Vote (U.S.)', icon:'',
     summary:'In the U.S., electors in the Electoral College cast official votes for president based on their state\'s results.',
     detail:'Electors are generally pledged to vote for the candidate who won their state. Most states use a winner-take-all model; Maine and Nebraska use proportional allocation. A candidate needs 270 of 538 electoral votes to win.'},
-  { num:9, badge:'post', badgeText:'Post-Election', title:'Congressional Certification', icon:'📜',
+  { num:9, badge:'post', badgeText:'Post-Election', title:'Congressional Certification', icon:'',
     summary:'Congress meets in a joint session to officially count and certify electoral votes, formally confirming the result.',
     detail:'The Vice President presides over this joint session. Objections can be raised by members of Congress, but they require a majority vote in both chambers to be sustained — an extremely high bar.'},
-  { num:10, badge:'post', badgeText:'Post-Election', title:'Inauguration Day', icon:'🎖️',
+  { num:10, badge:'post', badgeText:'Post-Election', title:'Inauguration Day', icon:'',
     summary:'The winner is officially sworn into office, takes the constitutional oath, and delivers an inaugural address to the nation.',
     detail:'In the U.S., Inauguration Day is January 20th. The outgoing president facilitates a peaceful transfer of power — a cornerstone of democratic governance. The incoming president\'s first acts and speech set the tone for their administration.'},
 ];
@@ -174,7 +174,7 @@ function buildTimeline() {
         aria-expanded="false"
         aria-label="${t.title} — press Enter to expand">
         <span class="tl-badge badge-${t.badge}">${t.badgeText}</span>
-        <h2 style="font-size:.97rem;font-weight:600;margin:.3rem 0">${t.icon} ${t.title}</h2>
+        <h2 style="font-size:.97rem;font-weight:600;margin:.3rem 0">${t.title}</h2>
         <p class="tl-summary">${t.summary}</p>
         <div class="tl-expand" role="region" aria-label="Details for ${t.title}">
           <div class="tl-expand-inner">${t.detail}</div>
@@ -228,21 +228,21 @@ function toggleExpand(card) {
 // ROLES
 // ═══════════════════════════════════════════════════════════════
 const ROLES_DATA = [
-  { icon:'🙋', bg:'#0d1f3c', title:'The Voter',
+  { icon:'V', bg:'#0d1f3c', title:'The Voter',
     desc:'The most important participant in any democracy. Eligible citizens cast ballots to select their representatives. Voting is both a fundamental right and a civic responsibility.' },
-  { icon:'🎤', bg:'#1a5c33', title:'The Candidate',
+  { icon:'C', bg:'#1a5c33', title:'The Candidate',
     desc:'A person who runs for elected office. Candidates build campaign teams, raise funds, develop policy platforms, hold public events, and ask voters for their support.' },
-  { icon:'🏛️', bg:'#283593', title:'Political Parties',
+  { icon:'P', bg:'#283593', title:'Political Parties',
     desc:'Organizations that share ideological values and nominate candidates for election. They coordinate campaign strategy, develop policy platforms, and mobilize voters.' },
-  { icon:'⚖️', bg:'#5c3317', title:'Electoral Commission',
+  { icon:'E', bg:'#5c3317', title:'Electoral Commission',
     desc:'An independent government body that oversees elections — managing voter rolls, certifying candidates, running polling stations, and certifying results.' },
-  { icon:'📰', bg:'#6a1e55', title:'The Media',
+  { icon:'M', bg:'#6a1e55', title:'The Media',
     desc:'Journalists, newspapers, TV networks, and digital outlets inform the public about candidates, policies, debates, and results. A free press is essential to democracy.' },
-  { icon:'🔍', bg:'#1a4a5c', title:'Election Observers',
+  { icon:'O', bg:'#1a4a5c', title:'Election Observers',
     desc:'Trained monitors who watch the election process to verify it is free, fair, and transparent. They report irregularities to authorities and the public.' },
-  { icon:'🧑‍⚖️', bg:'#4a3c17', title:'Poll Workers',
+  { icon:'W', bg:'#4a3c17', title:'Poll Workers',
     desc:'Trained volunteers or employees who staff polling stations — verifying voter IDs, distributing ballots, maintaining order, and ensuring the process runs smoothly.' },
-  { icon:'💰', bg:'#1a3a5c', title:'Campaign Donors & Funders',
+  { icon:'D', bg:'#1a3a5c', title:'Campaign Donors & Funders',
     desc:'Individuals, organisations, or PACs that provide financial support to candidates. Campaign finance rules vary significantly by country.' },
 ];
 
@@ -340,9 +340,9 @@ function renderQuiz() {
   if (cur >= qs.length) {
     clearInterval(quizState.timer);
     const pct = Math.round(score / qs.length * 100);
-    const msg = pct >= 80 ? '🎉 Election expert! Impressive knowledge.' :
-                pct >= 50 ? '👍 Good effort! Keep learning.' :
-                            '📚 Keep studying — you\'ll get there!';
+    const msg = pct >= 80 ? 'Election expert — impressive knowledge.' :
+                pct >= 50 ? 'Good effort! Keep learning.' :
+                            'Keep studying — you\'ll get there!';
     el.innerHTML = `
       <div class="quiz-card">
         <div class="score-display">
@@ -352,7 +352,7 @@ function renderQuiz() {
           <p class="score-msg">${msg}</p>
           <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap">
             <button class="btn-primary" data-action="quiz-restart">Play Again</button>
-            <button class="share-badge-btn" data-action="quiz-copy" data-score="${score}" data-total="${qs.length}">📋 Copy Score</button>
+            <button class="share-badge-btn" data-action="quiz-copy" data-score="${score}" data-total="${qs.length}">Copy Score</button>
           </div>
         </div>
       </div>`;
@@ -420,7 +420,7 @@ function revealTimeout() {
   if (opts[0]) opts[0].classList.add(q.a ? 'correct' : 'wrong');
   if (opts[1]) opts[1].classList.add(q.a ? 'wrong'   : 'correct');
   const fb = document.getElementById('qfb');
-  if (fb) { fb.className = 'quiz-feedback show wrong'; fb.textContent = '⏰ Time\'s up! ' + q.explain; }
+  if (fb) { fb.className = 'quiz-feedback show wrong'; fb.textContent = 'Time\'s up. ' + q.explain; }
   const nxt = document.getElementById('qnext');
   if (nxt) nxt.style.display = 'block';
 }
@@ -444,7 +444,7 @@ function answerQuiz(val, btn) {
   const fb = document.getElementById('qfb');
   if (fb) {
     fb.className = 'quiz-feedback show ' + (correct ? 'correct' : 'wrong');
-    fb.textContent = (correct ? '✓ Correct! ' : '✗ Not quite. ') + q.explain;
+    fb.textContent = (correct ? 'Correct. ' : 'Not quite. ') + q.explain;
   }
   const nxt = document.getElementById('qnext');
   if (nxt) nxt.style.display = 'block';
@@ -458,11 +458,11 @@ function nextQuiz() {
 
 function copyScore(score, total) {
   const pct  = Math.round(score / total * 100);
-  const text = `I scored ${score}/${total} (${pct}%) on the ElectED Election Quiz! 🗳️ Test your civic knowledge.`;
+  const text = 'I scored ' + score + '/' + total + ' (' + pct + '%) on the ElectED Election Quiz! Test your civic knowledge.';
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.querySelector('[data-action="quiz-copy"]');
-    if (btn) { btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = '📋 Copy Score', 2200); }
-  }).catch(() => alert(`Your score: ${score}/${total} (${pct}%)`));
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy Score', 2200); }
+  }).catch(() => alert('Your score: ' + score + '/' + total + ' (' + pct + '%)'));
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -648,9 +648,9 @@ function renderFlashcard() {
       </div>
     </div>
     <div class="fc-controls">
-      <button class="fc-btn review" data-action="fc-review" aria-label="Mark for review">👎 Review again</button>
+      <button class="fc-btn review" data-action="fc-review" aria-label="Mark for review">Review again</button>
       <span class="fc-counter" aria-live="polite">${fcState.idx + 1} / ${FLASHCARD_DATA.length} · ${fcState.learned.size} learned</span>
-      <button class="fc-btn know"   data-action="fc-know"   aria-label="Mark as learned">👍 Got it!</button>
+      <button class="fc-btn know"   data-action="fc-know"   aria-label="Mark as learned">Got it</button>
     </div>
     <div style="text-align:center;margin-top:1rem;display:flex;gap:.6rem;justify-content:center">
       <button class="btn-outline" data-action="fc-prev" aria-label="Previous card">← Prev</button>
@@ -687,61 +687,61 @@ function fcNav(dir) {
 // ═══════════════════════════════════════════════════════════════
 const JOURNEY_NODES = {
   start: {
-    scene: 'It\'s <strong>Election Day</strong>! You\'re 18 and this is your very first time voting. You wake up excited but nervous. What do you do first?',
+    scene: 'It\'s <strong>Election Day</strong>. You\'re 18 and this is your very first time voting. You wake up excited but a little nervous. What do you do first?',
     choices: [
-      { text: '✅ Check online if I\'m registered to vote', next: 'registered' },
-      { text: '🏃 Head straight to the polling station',    next: 'not_registered' },
+      { text: 'Check online whether I\'m registered to vote', next: 'registered' },
+      { text: 'Head straight to the polling station',          next: 'not_registered' },
     ]
   },
   registered: {
-    scene: 'Smart move! You\'re registered and find your <strong>polling station address</strong> — open until 8pm. Do you bring ID?',
+    scene: 'Smart move. You confirm you\'re registered and find your <strong>polling station address</strong> — open until 8 pm. Do you bring ID?',
     choices: [
-      { text: '🪪 Yes — I grab my photo ID and head out',       next: 'with_id' },
-      { text: '🤷 I didn\'t think I needed it, so I go without', next: 'no_id' },
+      { text: 'Yes — grab my photo ID and head out',    next: 'with_id' },
+      { text: 'I go without — I didn\'t think I needed it', next: 'no_id' },
     ]
   },
   not_registered: {
-    scene: 'The poll worker searches for your name and <strong>can\'t find you on the voter roll</strong>. You forgot to register before the deadline!',
+    scene: 'The poll worker searches for your name and <strong>cannot find you on the voter roll</strong>. You forgot to register before the deadline.',
     choices: [
-      { text: '📋 Ask whether same-day registration is available', next: 'same_day' },
-      { text: '😔 Leave without voting — nothing I can do',        next: 'bad_end' },
+      { text: 'Ask whether same-day registration is available', next: 'same_day' },
+      { text: 'Leave without voting — there\'s nothing I can do', next: 'bad_end' },
     ]
   },
   with_id: {
     scene: 'Your ID is verified and you\'re handed a <strong>ballot</strong>. You step into a private voting booth. How do you approach it?',
     choices: [
-      { text: '📝 Take my time, read every race carefully', next: 'voted_well' },
-      { text: '⚡ Rush through — I\'ll just pick quickly',  next: 'rushed' },
+      { text: 'Take my time and read every race carefully', next: 'voted_well' },
+      { text: 'Rush through and pick quickly',             next: 'rushed' },
     ]
   },
   no_id: {
-    scene: 'Your state requires ID. But the poll worker offers a <strong>provisional ballot</strong> — counted after your identity is verified.',
+    scene: 'Your state requires ID. The poll worker offers a <strong>provisional ballot</strong> — it will be counted once your identity is verified.',
     choices: [
-      { text: '✅ I\'ll accept the provisional ballot and vote', next: 'provisional' },
-      { text: '❌ It seems complicated — I\'ll skip it',         next: 'bad_end' },
+      { text: 'Accept the provisional ballot and vote', next: 'provisional' },
+      { text: 'It seems complicated — skip it',         next: 'bad_end' },
     ]
   },
   same_day: {
-    scene: 'Your state allows <strong>same-day registration</strong>! You fill out a short form and receive a provisional ballot.',
+    scene: 'Your state allows <strong>same-day registration</strong>. You fill out a short form and receive a provisional ballot.',
     choices: [
-      { text: '🗳️ Complete registration and cast my ballot!', next: 'voted_well' },
+      { text: 'Complete registration and cast my ballot', next: 'voted_well' },
     ]
   },
   provisional: {
     scene: 'You cast your <strong>provisional ballot</strong> and receive a receipt. You can track it online to confirm it was counted.',
-    choices: [{ text: '🎉 Thank the workers and leave!', next: 'ok_end' }]
+    choices: [{ text: 'Thank the poll workers and leave', next: 'ok_end' }]
   },
   voted_well: {
-    scene: 'You carefully review every race, make your selections, and feed the ballot into the scanner. A worker hands you an <strong>"I Voted" sticker</strong>! 🎉',
-    choices: [{ text: '🥳 Wear my sticker proudly!', next: 'great_end' }]
+    scene: 'You carefully review every race, make your selections, and feed the ballot into the scanner. A worker hands you an <strong>"I Voted" sticker</strong>.',
+    choices: [{ text: 'Head home — your vote is cast', next: 'great_end' }]
   },
   rushed: {
-    scene: 'You rushed and accidentally <strong>skipped one race</strong>, leaving it blank. The ballot was already submitted.',
-    choices: [{ text: '📋 It still counts — lesson learned for next time', next: 'ok_end' }]
+    scene: 'You rushed and accidentally <strong>left one race blank</strong>. The ballot was already submitted before you noticed.',
+    choices: [{ text: 'It still counts — lesson learned for next time', next: 'ok_end' }]
   },
-  bad_end:   { scene:'', choices:[], end:{ icon:'📋', title:'Lesson Learned!', desc:'You didn\'t vote this time — but now you know what to do. Register early, bring ID, and locate your polling station in advance.' } },
-  great_end: { scene:'', choices:[], end:{ icon:'🗳️', title:'First Vote Successfully Cast!', desc:'You prepared well, brought your ID, read every race carefully, and voted successfully. Your voice is now part of the democratic process!' } },
-  ok_end:    { scene:'', choices:[], end:{ icon:'✅', title:'Vote Recorded!', desc:'You voted — that\'s what matters most! Next time bring notes or a sample ballot to review every race carefully.' } },
+  bad_end:   { scene:'', choices:[], end:{ icon:'', title:'Lesson Learned', desc:'You didn\'t vote this time — but now you know what to do. Register early, bring ID, and locate your polling station in advance.' } },
+  great_end: { scene:'', choices:[], end:{ icon:'', title:'First Vote Successfully Cast', desc:'You prepared well, brought your ID, read every race carefully, and voted. Your voice is now part of the democratic process.' } },
+  ok_end:    { scene:'', choices:[], end:{ icon:'', title:'Vote Recorded', desc:'You voted — that\'s what matters most. Next time bring notes or a sample ballot to review every race carefully.' } },
 };
 
 let journeyNode = 'start';
@@ -760,7 +760,6 @@ function renderJourney() {
     el.innerHTML = `
       <div class="journey-card">
         <div class="journey-end">
-          <span class="big-emoji" aria-hidden="true">${node.end.icon}</span>
           <h2>${node.end.title}</h2>
           <p>${node.end.desc}</p>
           <button class="btn-primary" data-action="journey-restart">Play Again</button>
@@ -945,12 +944,12 @@ function askFromGlossary(term) {
 // AI CHAT
 // ═══════════════════════════════════════════════════════════════
 const SUGGESTIONS = [
-  '🗳️ How does voting work?',
-  '📋 What is the Electoral College?',
-  '🏛️ What are primaries?',
-  '🌐 How do other countries hold elections?',
-  '📝 How do I register to vote?',
-  '⚖️ What is gerrymandering?',
+  'How does voting work?',
+  'What is the Electoral College?',
+  'What are primaries?',
+  'How do other countries hold elections?',
+  'How do I register to vote?',
+  'What is gerrymandering?',
 ];
 
 let chatHistory  = [];
@@ -987,7 +986,7 @@ function buildChat() {
   }
 
   // Welcome message
-  addBotMessage('👋 Hi! I\'m your Election AI, powered by Google Gemini. Ask me anything about elections, voting rights, civic processes, or democratic systems. I\'m here to educate, not to take political sides!');
+  addBotMessage('Hello! I am your Election AI, powered by Google Gemini. Ask me anything about elections, voting rights, civic processes, or democratic systems. I am here to educate — not to take political sides.');
 }
 
 function addBotMessage(text) {
