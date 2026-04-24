@@ -6,26 +6,18 @@
   <title>ElectED — Your Interactive Election Guide</title>
   <meta name="description" content="Learn how elections work through interactive timelines, games, a glossary of 30+ terms, and an AI chat assistant. Free, non-partisan civic education for first-time voters and students.">
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
   <meta property="og:title"       content="ElectED — Your Interactive Election Guide">
   <meta property="og:description" content="Interactive civic education: timelines, games, glossary, and AI chat.">
   <meta property="og:type"        content="website">
   <meta name="theme-color"        content="#0d1f3c">
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "ElectED",
-    "description": "Interactive civic education platform teaching how elections work",
-    "url": "https://elected.app",
-    "educationalLevel": "Beginner",
-    "teaches": "Civic education, electoral systems, voter rights"
-  }
+  {"@context":"https://schema.org","@type":"EducationalOrganization","name":"ElectED","description":"Interactive civic education platform teaching how elections work","url":"https://elected-assistant-363744572016.us-central1.run.app","educationalLevel":"Beginner","teaches":"Civic education, electoral systems, voter rights"}
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>">
 </head>
@@ -36,22 +28,22 @@
 
 <!-- ═══ NAVIGATION ═══════════════════════════════════════════════ -->
 <nav class="site-nav" role="navigation" aria-label="Main navigation">
-  <a href="#" class="logo" onclick="showSection('home');return false;" aria-label="ElectED home">Elect<span>ED</span></a>
+  <a href="#" class="logo" data-action="nav" data-section="home" aria-label="ElectED home">Elect<span>ED</span></a>
 
   <ul class="nav-links" id="nav-links" role="list" aria-label="Site sections">
-    <li><button id="nav-home"     onclick="showSection('home')"     aria-current="true"  aria-label="Home">🏠 Home</button></li>
-    <li><button id="nav-timeline" onclick="showSection('timeline')" aria-current="false" aria-label="Election Timeline">📅 Timeline</button></li>
-    <li><button id="nav-roles"    onclick="showSection('roles')"    aria-current="false" aria-label="Key Roles">👥 Roles</button></li>
-    <li><button id="nav-games"    onclick="showSection('games')"    aria-current="false" aria-label="Games and Quizzes">🎮 Games</button></li>
-    <li><button id="nav-glossary" onclick="showSection('glossary')" aria-current="false" aria-label="Glossary">📖 Glossary</button></li>
-    <li><button id="nav-chat"     onclick="showSection('chat')"     aria-current="false" aria-label="Ask AI">🤖 Ask AI</button></li>
+    <li><button id="nav-home"     data-action="nav" data-section="home"     aria-current="true"  aria-label="Home"><span class="nav-icon" aria-hidden="true">🏠</span> Home</button></li>
+    <li><button id="nav-timeline" data-action="nav" data-section="timeline" aria-current="false" aria-label="Election Timeline"><span class="nav-icon" aria-hidden="true">📅</span> Timeline</button></li>
+    <li><button id="nav-roles"    data-action="nav" data-section="roles"    aria-current="false" aria-label="Key Roles"><span class="nav-icon" aria-hidden="true">👥</span> Roles</button></li>
+    <li><button id="nav-games"    data-action="nav" data-section="games"    aria-current="false" aria-label="Games and Quizzes"><span class="nav-icon" aria-hidden="true">🎮</span> Games</button></li>
+    <li><button id="nav-glossary" data-action="nav" data-section="glossary" aria-current="false" aria-label="Glossary"><span class="nav-icon" aria-hidden="true">📖</span> Glossary</button></li>
+    <li><button id="nav-chat"     data-action="nav" data-section="chat"     aria-current="false" aria-label="Ask AI"><span class="nav-icon" aria-hidden="true">🤖</span> Ask AI</button></li>
   </ul>
 
-  <div style="display:flex;align-items:center;gap:.4rem">
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  <div class="nav-end">
+    <button class="theme-toggle" id="theme-toggle" data-action="theme" aria-label="Toggle dark mode">
       <span id="theme-icon">🌙</span>
     </button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">☰</button>
+    <button class="hamburger" id="hamburger" data-action="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">☰</button>
   </div>
 </nav>
 
@@ -60,69 +52,116 @@
 
   <!-- ─── HOME ─────────────────────────────────────────────── -->
   <div id="sec-home" class="section-page active" role="region" aria-label="Home">
+
+    <!-- Hero -->
     <div class="hero" role="banner">
-      <div class="hero-badge" aria-hidden="true">🗳️ Civic Education Platform</div>
-      <h1>Democracy starts with<br><em>understanding</em> it.</h1>
-      <p>Explore how elections work through interactive timelines, quizzes, games, a full glossary, and an AI guide — all in one place.</p>
-      <div class="hero-btns">
-        <button class="btn-primary" onclick="showSection('timeline')">Explore the Timeline</button>
-        <button class="btn-ghost"    onclick="showSection('games')">Play &amp; Learn</button>
+      <div class="hero-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-badge" aria-hidden="true">
+          <span class="badge-dot"></span>🗳️ Civic Education Platform
+        </div>
+        <h1>Democracy starts with<br><em>understanding</em> it.</h1>
+        <p>Explore how elections work through interactive timelines, quizzes, games, a full glossary, and an AI guide — all in one place.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" data-action="nav" data-section="timeline">
+            <span>Explore the Timeline</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn-ghost" data-action="nav" data-section="games">Play &amp; Learn</button>
+        </div>
       </div>
     </div>
 
+    <!-- Feature Cards -->
     <div class="section-inner">
       <p class="gap-label" aria-hidden="true">What you'll learn</p>
       <div class="home-cards" role="list">
-        <button class="feat-card" onclick="showSection('timeline')" role="listitem" aria-label="Election Timeline section">
+        <button class="feat-card" data-action="nav" data-section="timeline" role="listitem" aria-label="Election Timeline section">
+          <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true">📅</div>
-          <h2 style="font-size:.95rem;font-weight:600;margin-bottom:.4rem">Election Timeline</h2>
+          <h2>Election Timeline</h2>
           <p>From announcement to inauguration — every step explained and expandable.</p>
+          <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" onclick="showSection('roles')" role="listitem" aria-label="Key Players section">
+        <button class="feat-card" data-action="nav" data-section="roles" role="listitem" aria-label="Key Players section">
+          <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true">👥</div>
-          <h2 style="font-size:.95rem;font-weight:600;margin-bottom:.4rem">Key Players</h2>
+          <h2>Key Players</h2>
           <p>Who does what? Voters, candidates, parties, officials, and media roles.</p>
+          <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" onclick="showSection('games')" role="listitem" aria-label="Games section">
+        <button class="feat-card" data-action="nav" data-section="games" role="listitem" aria-label="Games section">
+          <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true">🎮</div>
-          <h2 style="font-size:.95rem;font-weight:600;margin-bottom:.4rem">4 Learning Games</h2>
+          <h2>4 Learning Games</h2>
           <p>Quizzes, timeline scramble, flashcards, and a voter journey adventure.</p>
+          <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" onclick="showSection('glossary')" role="listitem" aria-label="Glossary section">
+        <button class="feat-card" data-action="nav" data-section="glossary" role="listitem" aria-label="Glossary section">
+          <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true">📖</div>
-          <h2 style="font-size:.95rem;font-weight:600;margin-bottom:.4rem">Glossary</h2>
-          <p>Search 30+ electoral terms with plain-English definitions and examples.</p>
+          <h2>Glossary</h2>
+          <p>Search 35+ electoral terms with plain-English definitions and examples.</p>
+          <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" onclick="showSection('chat')" role="listitem" aria-label="AI Chat section">
+        <button class="feat-card feat-card--ai" data-action="nav" data-section="chat" role="listitem" aria-label="AI Chat section">
+          <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true">🤖</div>
-          <h2 style="font-size:.95rem;font-weight:600;margin-bottom:.4rem">AI Assistant</h2>
+          <h2>AI Assistant</h2>
           <p>Ask anything about elections — powered by Google Gemini, answered instantly.</p>
+          <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
       </div>
 
-      <div class="stats-bar mt2" role="region" aria-label="Platform statistics">
-        <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Timeline Steps</div></div>
-        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Learning Games</div></div>
-        <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Glossary Terms</div></div>
-        <div class="stat-item"><div class="stat-num">🤖</div><div class="stat-label">AI-Powered Chat</div></div>
+      <!-- Stats -->
+      <div class="stats-bar" role="region" aria-label="Platform statistics">
+        <div class="stat-item">
+          <div class="stat-num" data-count="10">10</div>
+          <div class="stat-label">Timeline Steps</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-count="4">4</div>
+          <div class="stat-label">Learning Games</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Glossary Terms</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">AI</div>
+          <div class="stat-label">Powered Chat</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- ─── TIMELINE ──────────────────────────────────────────── -->
   <div id="sec-timeline" class="section-page" role="region" aria-label="Election Timeline">
+    <div class="section-hero section-hero--timeline">
+      <div class="section-inner">
+        <div class="section-eyebrow">📅 Step by Step</div>
+        <h1 class="section-title">Election Timeline</h1>
+        <p class="section-sub">Click any step to expand its full details. Each stage builds on the last.</p>
+      </div>
+    </div>
     <div class="section-inner">
-      <h1 class="section-title">Election Timeline</h1>
-      <p class="section-sub">Click any step to expand details. Elections follow a careful sequence — each stage builds on the last.</p>
       <div class="timeline" id="timeline-steps" role="list" aria-label="Election process steps"></div>
     </div>
   </div>
 
   <!-- ─── ROLES ─────────────────────────────────────────────── -->
   <div id="sec-roles" class="section-page" role="region" aria-label="Key Roles in an Election">
+    <div class="section-hero section-hero--roles">
+      <div class="section-inner">
+        <div class="section-eyebrow">👥 Meet the Players</div>
+        <h1 class="section-title">Key Roles in an Election</h1>
+        <p class="section-sub">Every election involves a cast of important participants. Here's who does what and why it matters.</p>
+      </div>
+    </div>
     <div class="section-inner">
-      <h1 class="section-title">Key Roles in an Election</h1>
-      <p class="section-sub">Every election involves a cast of important participants. Here's who does what and why it matters.</p>
       <div class="roles-list" id="roles-list" role="list" aria-label="Election roles"></div>
     </div>
   </div>
@@ -133,30 +172,35 @@
 
       <!-- Game Selector -->
       <div id="game-selector">
+        <div class="section-eyebrow">🎮 Learn Through Play</div>
         <h1 class="section-title">Games &amp; Quizzes</h1>
-        <p class="section-sub">Learn through play. Each game reinforces a different part of the election process.</p>
+        <p class="section-sub">Each game reinforces a different part of the election process. Pick your challenge!</p>
         <div class="game-grid" role="list" aria-label="Available games">
-          <button class="game-tile" onclick="startGame('quiz')" aria-label="Play True or False Buzz quiz" role="listitem">
+          <button class="game-tile" data-action="game" data-game="quiz" aria-label="Play True or False Buzz quiz" role="listitem">
+            <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">❓</div>
-            <h2 style="font-size:.92rem;font-weight:600;margin-bottom:.3rem">True or False Buzz</h2>
+            <h2>True or False Buzz</h2>
             <p>Bust election myths with fast-paced Q&amp;A</p>
             <div class="game-badge">15 questions · timer</div>
           </button>
-          <button class="game-tile" onclick="startGame('scramble')" aria-label="Play Timeline Scramble drag and drop game" role="listitem">
+          <button class="game-tile" data-action="game" data-game="scramble" aria-label="Play Timeline Scramble drag and drop game" role="listitem">
+            <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">🔀</div>
-            <h2 style="font-size:.92rem;font-weight:600;margin-bottom:.3rem">Timeline Scramble</h2>
+            <h2>Timeline Scramble</h2>
             <p>Put election stages in the right order</p>
             <div class="game-badge">Drag &amp; drop</div>
           </button>
-          <button class="game-tile" onclick="startGame('flashcards')" aria-label="Play Term Decoder flashcard game" role="listitem">
+          <button class="game-tile" data-action="game" data-game="flashcards" aria-label="Play Term Decoder flashcard game" role="listitem">
+            <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">🃏</div>
-            <h2 style="font-size:.92rem;font-weight:600;margin-bottom:.3rem">Term Decoder</h2>
+            <h2>Term Decoder</h2>
             <p>Master electoral vocabulary with flashcards</p>
             <div class="game-badge">20 terms · flip cards</div>
           </button>
-          <button class="game-tile" onclick="startGame('journey')" aria-label="Play Voter Journey adventure game" role="listitem">
+          <button class="game-tile" data-action="game" data-game="journey" aria-label="Play Voter Journey adventure game" role="listitem">
+            <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">🗺️</div>
-            <h2 style="font-size:.92rem;font-weight:600;margin-bottom:.3rem">Voter Journey</h2>
+            <h2>Voter Journey</h2>
             <p>Experience election day as a first-time voter</p>
             <div class="game-badge">Choose your path</div>
           </button>
@@ -166,8 +210,8 @@
       <!-- Quiz Game -->
       <div id="game-quiz" class="game-area" role="region" aria-label="True or False Buzz game">
         <div class="game-header">
-          <button class="btn-outline" onclick="backToGames()" aria-label="Back to games menu">← Back</button>
-          <h2 class="game-header-title" style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text)">True or False Buzz</h2>
+          <button class="btn-outline" id="back-quiz" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <h2 class="game-header-title">True or False Buzz</h2>
         </div>
         <div id="quiz-inner" aria-live="polite" aria-atomic="true"></div>
       </div>
@@ -175,8 +219,8 @@
       <!-- Scramble Game -->
       <div id="game-scramble" class="game-area" role="region" aria-label="Timeline Scramble game">
         <div class="game-header">
-          <button class="btn-outline" onclick="backToGames()" aria-label="Back to games menu">← Back</button>
-          <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text)">Timeline Scramble</h2>
+          <button class="btn-outline" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <h2 class="game-header-title">Timeline Scramble</h2>
         </div>
         <p class="section-sub" style="margin-bottom:1.2rem">Drag the cards into correct chronological order. Drop into the numbered slots!</p>
         <div id="scramble-inner" aria-live="polite"></div>
@@ -185,8 +229,8 @@
       <!-- Flashcards -->
       <div id="game-flashcards" class="game-area" role="region" aria-label="Term Decoder flashcard game">
         <div class="game-header">
-          <button class="btn-outline" onclick="backToGames()" aria-label="Back to games menu">← Back</button>
-          <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text)">Term Decoder</h2>
+          <button class="btn-outline" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <h2 class="game-header-title">Term Decoder</h2>
         </div>
         <p class="section-sub" style="margin-bottom:1.2rem">Click the card to flip it and reveal the definition. Mark each as learned or for review.</p>
         <div id="flashcard-inner" aria-live="polite"></div>
@@ -195,8 +239,8 @@
       <!-- Voter Journey -->
       <div id="game-journey" class="game-area" role="region" aria-label="Voter Journey game">
         <div class="game-header">
-          <button class="btn-outline" onclick="backToGames()" aria-label="Back to games menu">← Back</button>
-          <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text)">Voter Journey</h2>
+          <button class="btn-outline" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <h2 class="game-header-title">Voter Journey</h2>
         </div>
         <div id="journey-inner" aria-live="polite" aria-atomic="true"></div>
       </div>
@@ -206,31 +250,38 @@
 
   <!-- ─── GLOSSARY ───────────────────────────────────────────── -->
   <div id="sec-glossary" class="section-page" role="region" aria-label="Electoral Glossary">
-    <div class="section-inner">
-      <h1 class="section-title">Glossary of Electoral Terms</h1>
-      <p class="section-sub">Search or browse 30+ key terms used in elections and democratic processes — with plain-English definitions and real examples.</p>
-
-      <div class="glossary-search-wrap" role="search" aria-label="Search glossary terms">
-        <span class="search-icon" aria-hidden="true">🔍</span>
-        <input type="search" class="glossary-search" id="glossary-search"
-          placeholder="Search terms or definitions…"
-          aria-label="Search glossary"
-          oninput="filterGlossary(this.value)">
+    <div class="section-hero section-hero--glossary">
+      <div class="section-inner">
+        <div class="section-eyebrow">📖 Civic Vocabulary</div>
+        <h1 class="section-title">Glossary of Electoral Terms</h1>
+        <p class="section-sub">Search or browse 35+ key terms used in elections and democratic processes.</p>
+        <div class="glossary-search-wrap" role="search" aria-label="Search glossary terms">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input type="search" class="glossary-search" id="glossary-search"
+            placeholder="Search terms or definitions…"
+            aria-label="Search glossary"
+            autocomplete="off">
+        </div>
       </div>
-
+    </div>
+    <div class="section-inner">
       <nav class="glossary-az" aria-label="Filter by letter">
-        <button class="az-btn active" onclick="filterByLetter('all')" aria-label="Show all terms" aria-pressed="true">All</button>
+        <button class="az-btn active" data-action="az" data-letter="all" aria-label="Show all terms" aria-pressed="true">All</button>
       </nav>
-
       <div id="glossary-content" role="list" aria-label="Glossary terms"></div>
     </div>
   </div>
 
   <!-- ─── CHAT ──────────────────────────────────────────────── -->
   <div id="sec-chat" class="section-page" role="region" aria-label="AI Election Assistant">
+    <div class="section-hero section-hero--chat">
+      <div class="section-inner">
+        <div class="section-eyebrow">🤖 Gemini AI</div>
+        <h1 class="section-title">Ask the Election AI</h1>
+        <p class="section-sub">Have a question about elections? Ask anything — from how voting works to what gerrymandering means.</p>
+      </div>
+    </div>
     <div class="section-inner">
-      <h1 class="section-title">Ask the Election AI</h1>
-      <p class="section-sub">Have a question about elections? Ask anything — from how voting works to what gerrymandering means. Powered by Google Gemini.</p>
       <div class="chat-wrap">
         <div class="chat-suggestions" id="chat-suggestions" aria-label="Suggested questions"></div>
         <div class="chat-messages" id="chat-messages"
@@ -240,10 +291,10 @@
           <input type="text" id="chat-input" class="chat-input"
             placeholder="Ask about elections…"
             maxlength="1000"
-            autocomplete="off"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}">
-          <button class="chat-send" onclick="sendChat()" aria-label="Send message">
-            Send <span aria-hidden="true">→</span>
+            autocomplete="off">
+          <button class="chat-send" id="chat-send-btn" aria-label="Send message">
+            <span>Send</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 2.5L2.5 7l4 2 2 4 5-11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </div>
@@ -254,8 +305,11 @@
 
 <!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
 <footer class="site-footer" role="contentinfo">
-  <p>ElectED &mdash; Non-partisan civic education &mdash; Built with Google Cloud Run &amp; Gemini AI</p>
-  <p style="margin-top:.4rem">Information is educational only and not legal or political advice.</p>
+  <div class="footer-inner">
+    <div class="footer-logo">Elect<span>ED</span></div>
+    <p>Non-partisan civic education — Built with Google Cloud Run &amp; Gemini AI</p>
+    <p class="footer-legal">Information is educational only and not legal or political advice.</p>
+  </div>
 </footer>
 
 <script src="app.js"></script>
