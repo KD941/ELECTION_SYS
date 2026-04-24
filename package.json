@@ -1,0 +1,21 @@
+{
+  "name": "elected-election-assistant",
+  "version": "1.0.0",
+  "description": "ElectED — Interactive civic education platform with Gemini AI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^7.1.0",
+    "validator": "^13.12.0"
+  }
+}

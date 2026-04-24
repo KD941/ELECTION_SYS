@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectED — Your Election Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0d1f3c;--navy2:#162d52;--navy3:#1e3d6e;
+  --gold:#c9a84c;--gold2:#e8c56e;--gold3:#f5e0a0;
+  --cream:#fdfbf6;--cream2:#f4f0e8;
+  --text:#0d1f3c;--muted:#5a6a82;--light:#8fa0b8;
+  --white:#ffffff;--red:#c0392b;--green:#1a7a4a;
+  --r:12px;--r2:20px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* NAV */
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:60px;box-shadow:0 2px 20px rgba(0,0,0,.3);}
+.logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.5rem;font-weight:900;letter-spacing:-0.5px;}
+.logo span{color:var(--white);}
+.nav-links{display:flex;gap:.25rem;}
+.nav-links button{background:none;border:none;color:#8fa0b8;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;padding:.45rem .9rem;border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.nav-links button:hover,.nav-links button.active{background:rgba(201,168,76,.15);color:var(--gold2);}
+
+/* HERO */
+.hero{background:var(--navy);padding:4rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(30,61,110,.5) 0%,transparent 60%);}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold2);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.35rem 1rem;border-radius:999px;margin-bottom:1.5rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);color:var(--white);line-height:1.15;margin-bottom:1rem;position:relative;}
+.hero h1 em{color:var(--gold2);font-style:normal;}
+.hero p{color:#8fa0b8;font-size:1.05rem;max-width:540px;margin:0 auto 2rem;line-height:1.7;position:relative;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
+.btn-primary{background:var(--gold);color:var(--navy);font-weight:600;font-size:.9rem;padding:.7rem 1.8rem;border:none;border-radius:999px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);}
+.btn-ghost{background:rgba(255,255,255,.08);color:var(--white);font-weight:500;font-size:.9rem;padding:.7rem 1.8rem;border:1px solid rgba(255,255,255,.2);border-radius:999px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-ghost:hover{background:rgba(255,255,255,.15);}
+
+/* SECTIONS */
+section{display:none;padding:2.5rem 2rem;max-width:900px;margin:0 auto;}
+section.active{display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:.4rem;}
+.section-sub{color:var(--muted);font-size:.95rem;margin-bottom:2rem;line-height:1.6;}
+
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;}
+.card{background:var(--white);border:1px solid #e0d9cc;border-radius:var(--r2);padding:1.4rem;transition:all .2s;cursor:default;}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(13,31,60,.1);}
+.card-icon{font-size:1.8rem;margin-bottom:.8rem;}
+.card h3{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;}
+.card p{font-size:.85rem;color:var(--muted);line-height:1.6;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2.5rem;}
+.timeline::before{content:'';position:absolute;left:.85rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--navy3));}
+.tl-item{position:relative;margin-bottom:1.8rem;opacity:0;transform:translateX(-20px);transition:all .5s ease;}
+.tl-item.visible{opacity:1;transform:translateX(0);}
+.tl-dot{position:absolute;left:-2.5rem;top:.2rem;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--gold);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--gold);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--navy);}
+.tl-item .card{cursor:pointer;}
+.tl-item .card:hover .tl-expand{max-height:200px;}
+.tl-expand{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.tl-expand p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-top:.6rem;padding-top:.6rem;border-top:1px solid #e0d9cc;}
+.tl-badge{display:inline-block;font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:999px;margin-bottom:.5rem;}
+.badge-pre{background:#fef3e2;color:#8a5900;}
+.badge-vote{background:#e8f5e9;color:#1a5c33;}
+.badge-post{background:#e8eaf6;color:#283593;}
+
+/* QUIZ */
+.quiz-card{background:var(--white);border:1px solid #e0d9cc;border-radius:var(--r2);padding:2rem;max-width:640px;margin:0 auto;}
+.quiz-q{font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:1.5rem;line-height:1.5;}
+.quiz-options{display:flex;flex-direction:column;gap:.7rem;}
+.quiz-opt{background:var(--cream2);border:2px solid transparent;border-radius:var(--r);padding:.85rem 1.2rem;cursor:pointer;font-size:.9rem;font-family:'DM Sans',sans-serif;text-align:left;transition:all .2s;color:var(--text);}
+.quiz-opt:hover{border-color:var(--gold);background:#fdf8ed;}
+.quiz-opt.correct{background:#e8f5e9;border-color:var(--green);color:var(--green);}
+.quiz-opt.wrong{background:#fdecea;border-color:var(--red);color:var(--red);}
+.quiz-opt:disabled{cursor:default;}
+.quiz-feedback{margin-top:1rem;padding:1rem;border-radius:var(--r);font-size:.88rem;line-height:1.6;display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.correct{background:#e8f5e9;color:#1a5c33;}
+.quiz-feedback.wrong{background:#fdecea;color:#8b1a1a;}
+.quiz-progress{display:flex;gap:.4rem;margin-bottom:1.5rem;}
+.quiz-pip{flex:1;height:4px;border-radius:2px;background:#e0d9cc;transition:background .3s;}
+.quiz-pip.done{background:var(--gold);}
+.quiz-pip.active{background:var(--navy);}
+.score-display{text-align:center;padding:2rem;}
+.score-num{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--navy);}
+.score-label{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;}
+
+/* SCRAMBLE GAME */
+.scramble-board{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:560px;margin:0 auto;}
+.scramble-card{background:var(--white);border:2px solid #e0d9cc;border-radius:var(--r);padding:1rem 1.2rem;cursor:grab;font-size:.88rem;font-weight:500;color:var(--navy);transition:all .2s;user-select:none;min-height:60px;display:flex;align-items:center;}
+.scramble-card:active{cursor:grabbing;}
+.scramble-card.dragging{opacity:.5;transform:scale(.95);}
+.scramble-card.correct{border-color:var(--green);background:#e8f5e9;color:var(--green);}
+.scramble-card.wrong{border-color:var(--red);background:#fdecea;color:var(--red);}
+.drop-zone{background:var(--cream2);border:2px dashed #c0b89a;border-radius:var(--r);padding:1rem;min-height:60px;display:flex;align-items:center;font-size:.8rem;color:var(--light);transition:all .2s;}
+.drop-zone.over{border-color:var(--gold);background:#fdf8ed;}
+.drop-zone.filled{background:var(--white);border-style:solid;border-color:#e0d9cc;}
+
+/* FLASHCARDS */
+.flashcard-scene{perspective:1000px;width:100%;max-width:480px;margin:0 auto 1.5rem;height:220px;}
+.flashcard{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1);cursor:pointer;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r2);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+.fc-front{background:var(--navy);border:1px solid var(--navy3);}
+.fc-front h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);}
+.fc-front p{color:var(--gold2);font-size:.8rem;margin-top:.5rem;text-transform:uppercase;letter-spacing:.1em;}
+.fc-back{background:var(--white);border:1px solid #e0d9cc;transform:rotateY(180deg);}
+.fc-back p{color:var(--text);font-size:.95rem;line-height:1.6;}
+.fc-back .fc-example{font-size:.8rem;color:var(--muted);margin-top:.8rem;font-style:italic;}
+.fc-controls{display:flex;align-items:center;justify-content:center;gap:1rem;}
+.fc-btn{background:var(--navy);color:var(--white);border:none;border-radius:999px;padding:.5rem 1.4rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;transition:all .2s;}
+.fc-btn:hover{background:var(--navy3);}
+.fc-btn.know{background:var(--green);}
+.fc-btn.review{background:var(--red);}
+.fc-counter{color:var(--muted);font-size:.85rem;}
+.fc-progress{height:4px;background:#e0d9cc;border-radius:2px;margin-bottom:1.5rem;overflow:hidden;}
+.fc-progress-bar{height:100%;background:var(--gold);transition:width .4s;}
+
+/* VOTER JOURNEY */
+.journey-card{background:var(--white);border:1px solid #e0d9cc;border-radius:var(--r2);padding:2rem;max-width:640px;margin:0 auto;}
+.journey-scene{font-size:.95rem;line-height:1.8;color:var(--text);margin-bottom:1.5rem;}
+.journey-scene strong{color:var(--navy);font-weight:600;}
+.journey-choices{display:flex;flex-direction:column;gap:.7rem;}
+.journey-choice{background:var(--cream2);border:2px solid transparent;border-radius:var(--r);padding:.85rem 1.2rem;cursor:pointer;font-size:.88rem;font-family:'DM Sans',sans-serif;text-align:left;transition:all .2s;color:var(--text);}
+.journey-choice:hover{border-color:var(--navy3);background:#eef2f8;}
+.journey-end{text-align:center;padding:1.5rem 0;}
+.journey-end .big-emoji{font-size:3rem;margin-bottom:.8rem;}
+.journey-end h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:.5rem;}
+.journey-end p{color:var(--muted);font-size:.9rem;line-height:1.6;max-width:400px;margin:0 auto 1.5rem;}
+
+/* CHAT */
+.chat-wrap{max-width:640px;margin:0 auto;}
+.chat-messages{background:var(--white);border:1px solid #e0d9cc;border-radius:var(--r2);padding:1.2rem;height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:.9rem;margin-bottom:1rem;}
+.msg{max-width:82%;padding:.8rem 1.1rem;border-radius:1rem;font-size:.88rem;line-height:1.6;}
+.msg.bot{background:var(--cream2);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;}
+.msg.user{background:var(--navy);color:var(--white);align-self:flex-end;border-bottom-right-radius:4px;}
+.msg.typing{color:var(--muted);}
+.chat-input-row{display:flex;gap:.7rem;}
+.chat-input-row input{flex:1;background:var(--white);border:1px solid #e0d9cc;border-radius:999px;padding:.7rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--text);outline:none;transition:border .2s;}
+.chat-input-row input:focus{border-color:var(--gold);}
+.chat-input-row button{background:var(--navy);color:var(--white);border:none;border-radius:999px;padding:.7rem 1.4rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;transition:background .2s;}
+.chat-input-row button:hover{background:var(--navy3);}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem;}
+.chat-sug{background:var(--cream2);border:1px solid #e0d9cc;border-radius:999px;padding:.35rem .9rem;font-size:.78rem;cursor:pointer;color:var(--muted);transition:all .2s;font-family:'DM Sans',sans-serif;}
+.chat-sug:hover{background:#fdf8ed;border-color:var(--gold);color:var(--navy);}
+
+/* ROLES SECTION */
+.role-card{background:var(--white);border:1px solid #e0d9cc;border-radius:var(--r2);padding:1.4rem;display:flex;gap:1rem;align-items:flex-start;transition:all .2s;cursor:default;}
+.role-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(13,31,60,.08);}
+.role-icon{width:48px;height:48px;border-radius:var(--r);background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+.role-info h3{font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;}
+.role-info p{font-size:.83rem;color:var(--muted);line-height:1.5;}
+
+/* GAME SELECTOR */
+.game-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem;}
+.game-tile{background:var(--white);border:1px solid #e0d9cc;border-radius:var(--r2);padding:1.4rem;cursor:pointer;transition:all .2s;text-align:center;}
+.game-tile:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(13,31,60,.12);border-color:var(--gold);}
+.game-tile .gt-icon{font-size:2rem;margin-bottom:.7rem;}
+.game-tile h3{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;}
+.game-tile p{font-size:.78rem;color:var(--muted);}
+.game-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;background:#fef3e2;color:#8a5900;margin-top:.4rem;text-transform:uppercase;letter-spacing:.05em;}
+.game-area{display:none;}
+.game-area.active{display:block;}
+.game-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;}
+.back-btn{background:var(--cream2);border:1px solid #e0d9cc;border-radius:999px;padding:.4rem 1rem;font-size:.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--muted);transition:all .2s;}
+.back-btn:hover{background:#e0d9cc;color:var(--navy);}
+
+/* UTIL */
+.text-center{text-align:center;}
+.mt1{margin-top:1rem;}
+.mt2{margin-top:2rem;}
+.gap-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--light);margin-bottom:.6rem;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:#c0b89a;border-radius:3px;}
+
+@media(max-width:600px){
+  .nav-links button{font-size:.7rem;padding:.4rem .6rem;}
+  .scramble-board{grid-template-columns:1fr;}
+  nav{padding:0 1rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Elect<span>ED</span></div>
+  <div class="nav-links">
+    <button class="active" onclick="showSection('home')">Home</button>
+    <button onclick="showSection('timeline')">Timeline</button>
+    <button onclick="showSection('roles')">Roles</button>
+    <button onclick="showSection('games')">Games</button>
+    <button onclick="showSection('chat')">Ask AI</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="sec-home" style="display:block">
+  <div class="hero">
+    <div class="hero-badge">🗳️ Civic Education</div>
+    <h1>Democracy starts<br>with <em>understanding</em> it.</h1>
+    <p>Explore how elections work, learn the key steps, play games to test your knowledge, and ask anything with our AI guide.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showSection('timeline')">Explore the Timeline</button>
+      <button class="btn-ghost" onclick="showSection('games')">Play & Learn</button>
+    </div>
+  </div>
+  <section class="active" style="padding-top:2.5rem;">
+    <p class="gap-label">What you'll learn</p>
+    <div class="card-grid">
+      <div class="card" onclick="showSection('timeline')" style="cursor:pointer">
+        <div class="card-icon">📅</div>
+        <h3>Election Timeline</h3>
+        <p>From announcement to inauguration — every step explained.</p>
+      </div>
+      <div class="card" onclick="showSection('roles')" style="cursor:pointer">
+        <div class="card-icon">👥</div>
+        <h3>Key Players</h3>
+        <p>Who does what? Candidates, voters, officials, and media.</p>
+      </div>
+      <div class="card" onclick="showSection('games')" style="cursor:pointer">
+        <div class="card-icon">🎮</div>
+        <h3>Fun Games</h3>
+        <p>Quizzes, flashcards, and a voter journey adventure.</p>
+      </div>
+      <div class="card" onclick="showSection('chat')" style="cursor:pointer">
+        <div class="card-icon">🤖</div>
+        <h3>AI Assistant</h3>
+        <p>Ask any question about elections — answered instantly.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- TIMELINE -->
+<section id="sec-timeline">
+  <h2 class="section-title">Election Timeline</h2>
+  <p class="section-sub">Click any step to expand details. Elections follow a careful sequence — each stage builds on the last.</p>
+  <div class="timeline" id="timeline-steps"></div>
+</section>
+
+<!-- ROLES -->
+<section id="sec-roles">
+  <h2 class="section-title">Key Roles in an Election</h2>
+  <p class="section-sub">Every election involves a cast of important players. Here's who does what.</p>
+  <div style="display:flex;flex-direction:column;gap:.9rem;" id="roles-list"></div>
+</section>
+
+<!-- GAMES -->
+<section id="sec-games">
+  <div id="game-selector">
+    <h2 class="section-title">Games & Quizzes</h2>
+    <p class="section-sub">Learn through play. Each game reinforces a different part of the election process.</p>
+    <div class="game-grid">
+      <div class="game-tile" onclick="startGame('quiz')">
+        <div class="gt-icon">❓</div>
+        <h3>True or False Buzz</h3>
+        <p>Bust election myths with fast-paced Q&A</p>
+        <div class="game-badge">10 questions</div>
+      </div>
+      <div class="game-tile" onclick="startGame('scramble')">
+        <div class="gt-icon">🔀</div>
+        <h3>Timeline Scramble</h3>
+        <p>Put election stages in the right order</p>
+        <div class="game-badge">Drag & drop</div>
+      </div>
+      <div class="game-tile" onclick="startGame('flashcards')">
+        <div class="gt-icon">🃏</div>
+        <h3>Term Decoder</h3>
+        <p>Master electoral vocabulary with flashcards</p>
+        <div class="game-badge">20 terms</div>
+      </div>
+      <div class="game-tile" onclick="startGame('journey')">
+        <div class="gt-icon">🗺️</div>
+        <h3>Voter Journey</h3>
+        <p>Experience election day as a first-time voter</p>
+        <div class="game-badge">Adventure</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-quiz" class="game-area">
+    <div class="game-header">
+      <button class="back-btn" onclick="backToGames()">← Back</button>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy)">True or False Buzz</h3>
+    </div>
+    <div id="quiz-inner"></div>
+  </div>
+
+  <div id="game-scramble" class="game-area">
+    <div class="game-header">
+      <button class="back-btn" onclick="backToGames()">← Back</button>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy)">Timeline Scramble</h3>
+    </div>
+    <p class="section-sub" style="margin-bottom:1.2rem">Drag the cards into the correct chronological order. Number 1 happens first!</p>
+    <div id="scramble-inner"></div>
+  </div>
+
+  <div id="game-flashcards" class="game-area">
+    <div class="game-header">
+      <button class="back-btn" onclick="backToGames()">← Back</button>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy)">Term Decoder</h3>
+    </div>
+    <p class="section-sub" style="margin-bottom:1.2rem">Click the card to reveal the definition. Mark each term as learned or to review.</p>
+    <div id="flashcard-inner"></div>
+  </div>
+
+  <div id="game-journey" class="game-area">
+    <div class="game-header">
+      <button class="back-btn" onclick="backToGames()">← Back</button>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy)">Voter Journey</h3>
+    </div>
+    <div id="journey-inner"></div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section id="sec-chat">
+  <h2 class="section-title">Ask the Election AI</h2>
+  <p class="section-sub">Have a question about elections? Ask anything — from how voting works to what gerrymandering means.</p>
+  <div class="chat-wrap">
+    <div class="chat-suggestions" id="chat-suggestions"></div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Ask about elections…" onkeydown="if(event.key==='Enter')sendChat()">
+      <button onclick="sendChat()">Send</button>
+    </div>
+  </div>
+</section>
+
+<script>
+// ─── NAVIGATION ───────────────────────────────────────────────
+function showSection(id){
+  document.querySelectorAll('section,[id^=sec-]').forEach(s=>s.style.display='none');
+  const el=document.getElementById('sec-'+id);
+  if(el){el.style.display='block';el.classList.add('active');}
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const map={home:0,timeline:1,roles:2,games:3,chat:4};
+  const btns=document.querySelectorAll('.nav-links button');
+  if(map[id]!==undefined)btns[map[id]].classList.add('active');
+  if(id==='home'){
+    document.getElementById('sec-home').style.display='block';
+    document.querySelector('section.active').style.display='block';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─── TIMELINE DATA ─────────────────────────────────────────────
+const timelineData=[
+  {num:1,badge:'pre',badgeText:'Pre-Election',title:'Candidate Announcement',icon:'📢',
+   summary:'Potential candidates officially announce their intention to run, forming campaign committees and beginning fundraising.',
+   detail:'Candidates file paperwork with the electoral commission, declare their candidacy publicly, and begin assembling their campaign team. This phase can start years before the actual election.'},
+  {num:2,badge:'pre',badgeText:'Pre-Election',title:'Primary Elections / Caucuses',icon:'🏛️',
+   summary:'Voters within each party choose their preferred candidate through primaries (direct voting) or caucuses (public meetings).',
+   detail:'Primaries are state-run elections; caucuses are party-organized meetings. The winner earns "delegates" who will represent them at the national convention.'},
+  {num:3,badge:'pre',badgeText:'Pre-Election',title:'Party Conventions',icon:'🎉',
+   summary:'Each major party holds a national convention where delegates formally nominate their presidential and vice-presidential candidates.',
+   detail:'Conventions are also where parties adopt their official platform — a document outlining their policy positions and goals for the country.'},
+  {num:4,badge:'pre',badgeText:'Campaign',title:'General Election Campaign',icon:'📣',
+   summary:'Nominated candidates campaign across the country — holding rallies, debating opponents, and running advertisements.',
+   detail:'This phase includes presidential debates, vice-presidential debates, and intense media coverage. Campaigns focus on swing states or key constituencies that could go either way.'},
+  {num:5,badge:'vote',badgeText:'Election',title:'Voter Registration Deadline',icon:'📝',
+   summary:'Most regions require voters to register ahead of time. Deadlines vary by state or country — often 15–30 days before Election Day.',
+   detail:'Registration confirms your eligibility to vote and ensures your name is on the official voter roll at your polling place. Some places offer same-day registration.'},
+  {num:6,badge:'vote',badgeText:'Election',title:'Election Day',icon:'🗳️',
+   summary:'Registered voters cast their ballots at polling stations or via mail/absentee ballots. This is democracy in action.',
+   detail:'Polling stations open in the morning and close in the evening. Officials check voter IDs, guide voters through the ballot, and ensure the process is secure and accessible.'},
+  {num:7,badge:'post',badgeText:'Post-Election',title:'Vote Counting & Certification',icon:'🔢',
+   summary:'Ballots are counted by election officials. Results are certified by state authorities, often taking days to weeks.',
+   detail:'Absentee and mail-in ballots may take longer to process. Either candidate can request a recount if the margin is extremely close.'},
+  {num:8,badge:'post',badgeText:'Post-Election',title:'Electoral College Vote',icon:'🏛️',
+   summary:'In the U.S., electors cast official votes for president. In other systems, the parliament selects a prime minister from the elected majority.',
+   detail:'Electors are generally pledged to vote for the candidate who won their state. Most states use a winner-take-all model; Maine and Nebraska use proportional allocation.'},
+  {num:9,badge:'post',badgeText:'Post-Election',title:'Congressional Certification',icon:'📜',
+   summary:'Congress meets to officially count and certify electoral votes, formally confirming the election result.',
+   detail:'The Vice President presides over this joint session of Congress. Objections can be raised but require majority votes in both chambers to be sustained.'},
+  {num:10,badge:'post',badgeText:'Post-Election',title:'Inauguration',icon:'🎖️',
+   summary:'The winner is officially sworn into office, takes the oath, and delivers an inaugural address to the nation.',
+   detail:'Inauguration Day is January 20th in the U.S. The outgoing president facilitates a peaceful transfer of power — a cornerstone of democracy.'},
+];
+
+function buildTimeline(){
+  const el=document.getElementById('timeline-steps');
+  el.innerHTML=timelineData.map(t=>`
+    <div class="tl-item" data-num="${t.num}">
+      <div class="tl-dot">${t.num}</div>
+      <div class="card" onclick="toggleExpand(this)">
+        <div class="tl-badge badge-${t.badge}">${t.badgeText}</div>
+        <h3>${t.icon} ${t.title}</h3>
+        <p style="font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.3rem">${t.summary}</p>
+        <div class="tl-expand"><p>${t.detail}</p></div>
+        <p style="font-size:.75rem;color:var(--light);margin-top:.5rem">↓ Click to expand</p>
+      </div>
+    </div>
+  `).join('');
+  setTimeout(animateTimeline,100);
+}
+function animateTimeline(){
+  const items=document.querySelectorAll('.tl-item');
+  items.forEach((item,i)=>{
+    setTimeout(()=>item.classList.add('visible'),i*80);
+  });
+}
+function toggleExpand(card){
+  const exp=card.querySelector('.tl-expand');
+  const hint=card.querySelector('p:last-child');
+  if(exp.style.maxHeight&&exp.style.maxHeight!=='0px'){
+    exp.style.maxHeight='0px';
+    hint.textContent='↓ Click to expand';
+  } else {
+    exp.style.maxHeight='300px';
+    hint.textContent='↑ Click to collapse';
+  }
+}
+buildTimeline();
+
+// ─── ROLES DATA ────────────────────────────────────────────────
+const rolesData=[
+  {icon:'🙋',color:'#0d1f3c',title:'The Voter',desc:'The most important participant. Eligible citizens cast ballots to select their representatives. Voting is both a right and a civic responsibility.'},
+  {icon:'🎤',color:'#1a5c33',title:'The Candidate',desc:'A person running for office. They build a campaign team, raise funds, communicate their platform, and ask voters for their support.'},
+  {icon:'🏛️',color:'#283593',title:'Political Parties',desc:'Organizations that share ideological values and nominate candidates. They coordinate campaign strategy, develop policy platforms, and mobilize voters.'},
+  {icon:'⚖️',color:'#5c3317',title:'Electoral Commission',desc:'An independent government body that oversees elections — managing voter registration, certifying candidates, running polling stations, and counting votes.'},
+  {icon:'📰',color:'#6a1e55',title:'The Media',desc:'Journalists and news outlets inform the public about candidates, policies, and election results. A free press is essential to democratic elections.'},
+  {icon:'🔍',color:'#8a4000',title:'Election Observers',desc:'International or domestic monitors who watch the election process to verify it is free, fair, and transparent. They report irregularities.'},
+  {icon:'🧑‍⚖️',color:'#1a4a5c',title:'Poll Workers',desc:'Trained volunteers or employees who staff polling stations — checking voter rolls, distributing ballots, and ensuring orderly voting.'},
+];
+
+function buildRoles(){
+  const el=document.getElementById('roles-list');
+  el.innerHTML=rolesData.map(r=>`
+    <div class="role-card">
+      <div class="role-icon" style="background:${r.color}">${r.icon}</div>
+      <div class="role-info">
+        <h3>${r.title}</h3>
+        <p>${r.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+buildRoles();
+
+// ─── QUIZ GAME ─────────────────────────────────────────────────
+const quizData=[
+  {q:'You must be a registered voter to cast a ballot in most elections.',a:true,explain:'Correct! Voter registration confirms eligibility and places you on the official voter roll. Deadlines vary by region.'},
+  {q:'The candidate with the most popular votes always wins the U.S. presidency.',a:false,explain:'Not necessarily! The U.S. uses the Electoral College. A candidate can win the most votes nationally but lose the election (as happened in 2000 and 2016).'},
+  {q:'Primary elections determine which candidate represents their party in the general election.',a:true,explain:'Exactly right. Primaries let party members choose their preferred candidate before the main election.'},
+  {q:'Gerrymandering means drawing district boundaries to give one party an unfair advantage.',a:true,explain:'Correct! The term comes from Governor Elbridge Gerry who approved oddly shaped districts in 1812.'},
+  {q:'The President of the United States is elected to a 4-year term with no limits on re-election.',a:false,explain:'A president can serve only two terms (8 years) due to the 22nd Amendment, ratified in 1951.'},
+  {q:'Absentee ballots are only for people who are physically unable to go to a polling station.',a:false,explain:'Many states allow any registered voter to request an absentee or mail-in ballot, no special reason required.'},
+  {q:'Exit polls are conducted before people enter the polling station.',a:false,explain:'Exit polls are conducted as voters EXIT after voting — they're used to predict results before official counts are complete.'},
+  {q:'Proportional representation means parties receive seats roughly equal to their share of the vote.',a:true,explain:'Correct! Unlike winner-take-all systems, proportional representation lets smaller parties gain parliamentary seats based on vote percentage.'},
+  {q:'A "swing state" is a state that reliably votes for the same party every election.',a:false,explain:'Swing states (or "battleground states") are competitive — they could go to either party, making them the focus of campaign attention.'},
+  {q:'A candidate needs more than 50% of the vote to win in a plurality voting system.',a:false,explain:'In a plurality (first-past-the-post) system, the candidate with the MOST votes wins, even without a majority. They just need more than any other candidate.'},
+];
+
+let quizState={cur:0,score:0,answered:false,qs:[]};
+
+function startGame(id){
+  document.getElementById('game-selector').style.display='none';
+  document.querySelectorAll('.game-area').forEach(g=>g.classList.remove('active'));
+  document.getElementById('game-'+id).classList.add('active');
+  if(id==='quiz')initQuiz();
+  if(id==='scramble')initScramble();
+  if(id==='flashcards')initFlashcards();
+  if(id==='journey')initJourney();
+}
+function backToGames(){
+  document.querySelectorAll('.game-area').forEach(g=>g.classList.remove('active'));
+  document.getElementById('game-selector').style.display='block';
+}
+
+function initQuiz(){
+  quizState.qs=[...quizData].sort(()=>Math.random()-.5).slice(0,10);
+  quizState.cur=0;quizState.score=0;quizState.answered=false;
+  renderQuiz();
+}
+function renderQuiz(){
+  const el=document.getElementById('quiz-inner');
+  const {qs,cur,score}=quizState;
+  if(cur>=qs.length){
+    const pct=Math.round(score/qs.length*100);
+    const msg=pct>=80?'🎉 Election expert! Impressive knowledge.':pct>=50?'👍 Good effort! Keep learning.':'📚 Keep studying — you\'ll get there!';
+    el.innerHTML=`<div class="quiz-card"><div class="score-display">
+      <div class="score-num">${score}/${qs.length}</div>
+      <div class="score-label">${pct}% correct</div>
+      <p style="color:var(--muted);margin-bottom:1.5rem">${msg}</p>
+      <button class="btn-primary" onclick="initQuiz()">Play Again</button>
+    </div></div>`;
+    return;
+  }
+  const q=qs[cur];
+  const pips=qs.map((_,i)=>`<div class="quiz-pip ${i<cur?'done':i===cur?'active':''}"></div>`).join('');
+  el.innerHTML=`<div class="quiz-card">
+    <div class="quiz-progress">${pips}</div>
+    <div class="quiz-q">Question ${cur+1}: ${q.q}</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="answerQuiz(true,this)">✓ True</button>
+      <button class="quiz-opt" onclick="answerQuiz(false,this)">✗ False</button>
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+    <div id="qnext" style="display:none;margin-top:1rem;text-align:right">
+      <button class="btn-primary" onclick="nextQuiz()">Next →</button>
+    </div>
+  </div>`;
+}
+function answerQuiz(val,btn){
+  if(quizState.answered)return;
+  quizState.answered=true;
+  const q=quizState.qs[quizState.cur];
+  const correct=val===q.a;
+  if(correct)quizState.score++;
+  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    const other=document.querySelectorAll('.quiz-opt')[val?1:0];
+    other.classList.add('correct');
+  }
+  const fb=document.getElementById('qfb');
+  fb.className='quiz-feedback show '+(correct?'correct':'wrong');
+  fb.textContent=(correct?'✓ Correct! ':'✗ Not quite. ')+q.explain;
+  document.getElementById('qnext').style.display='block';
+}
+function nextQuiz(){
+  quizState.cur++;quizState.answered=false;
+  renderQuiz();
+}
+
+// ─── SCRAMBLE GAME ─────────────────────────────────────────────
+const scrambleSteps=[
+  'Candidate Announcement','Primary Elections','Party Convention & Nomination',
+  'General Election Campaign','Voter Registration Deadline','Election Day Voting',
+  'Vote Counting & Certification','Inauguration Day'
+];
+let scrambleOrder=[];
+let dragSrc=null;
+
+function initScramble(){
+  scrambleOrder=[...Array(scrambleSteps.length).keys()].sort(()=>Math.random()-.5);
+  const el=document.getElementById('scramble-inner');
+  el.innerHTML=`
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem">Drag the cards below into correct order (slots are numbered 1–8):</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:700px;margin:0 auto;">
+      <div>
+        <p class="gap-label">Shuffled cards</p>
+        <div id="sc-source" style="display:flex;flex-direction:column;gap:.6rem">
+          ${scrambleOrder.map(i=>`<div class="scramble-card" draggable="true" data-idx="${i}" 
+            ondragstart="dragStart(event)" ondragend="dragEnd(event)">${scrambleSteps[i]}</div>`).join('')}
+        </div>
+      </div>
+      <div>
+        <p class="gap-label">Drop in order</p>
+        <div id="sc-target" style="display:flex;flex-direction:column;gap:.6rem">
+          ${scrambleSteps.map((_,i)=>`<div class="drop-zone" data-slot="${i}" 
+            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropCard(event)">
+            <span style="font-size:.7rem;color:var(--light);margin-right:.5rem">${i+1}.</span>
+            <span class="dz-text" style="font-size:.83rem">Drop here</span>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div id="sc-result" style="margin-top:1.5rem;text-align:center"></div>
+    <div style="text-align:center;margin-top:1rem">
+      <button class="btn-primary" onclick="checkScramble()">Check My Order</button>
+      <button class="btn-ghost" style="margin-left:.5rem" onclick="initScramble()">Reset</button>
+    </div>
+  `;
+}
+function dragStart(e){
+  dragSrc=e.target;e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed='move';
+  e.dataTransfer.setData('text',e.target.dataset.idx);
+}
+function dragEnd(e){e.target.classList.remove('dragging');}
+function dragOver(e){e.preventDefault();e.currentTarget.classList.add('over');}
+function dragLeave(e){e.currentTarget.classList.remove('over');}
+function dropCard(e){
+  e.preventDefault();
+  const zone=e.currentTarget;
+  zone.classList.remove('over');
+  const idx=e.dataTransfer.getData('text');
+  const existing=zone.dataset.placed;
+  if(existing!==undefined){
+    // swap back
+    const source=document.querySelector(`.scramble-card[data-idx="${existing}"]`);
+    if(source&&dragSrc){document.getElementById('sc-source').appendChild(source);}
+  }
+  zone.dataset.placed=idx;
+  zone.classList.add('filled');
+  zone.querySelector('.dz-text').textContent=scrambleSteps[parseInt(idx)];
+  if(dragSrc)dragSrc.style.display='none';
+}
+function checkScramble(){
+  const zones=document.querySelectorAll('.drop-zone');
+  let correct=0;
+  zones.forEach((zone,i)=>{
+    if(zone.dataset.placed!==undefined){
+      const placed=parseInt(zone.dataset.placed);
+      if(placed===i){zone.style.borderColor='var(--green)';zone.style.background='#e8f5e9';correct++;}
+      else{zone.style.borderColor='var(--red)';zone.style.background='#fdecea';}
+    }
+  });
+  const filled=document.querySelectorAll('.drop-zone[data-placed]').length;
+  const res=document.getElementById('sc-result');
+  if(filled<scrambleSteps.length){res.innerHTML='<p style="color:var(--muted)">Fill all slots before checking!</p>';return;}
+  if(correct===scrambleSteps.length){
+    res.innerHTML='<div style="background:#e8f5e9;border:1px solid var(--green);border-radius:var(--r);padding:1rem;color:var(--green);font-weight:600">🎉 Perfect! All steps in the correct order!</div>';
+  } else {
+    res.innerHTML=`<div style="background:#fdecea;border:1px solid var(--red);border-radius:var(--r);padding:1rem;color:#8b1a1a">${correct}/${scrambleSteps.length} correct. Try again!</div>`;
+  }
+}
+
+// ─── FLASHCARDS ────────────────────────────────────────────────
+const flashcardData=[
+  {term:'Ballot',def:'A document (paper or electronic) on which voters record their choices in an election.',ex:'She filled out her ballot carefully before placing it in the box.'},
+  {term:'Primary',def:'An election in which voters choose a party\'s candidate to run in the general election.',ex:'The Democratic primary narrowed down five candidates to one.'},
+  {term:'Electoral College',def:'A body of electors established by the U.S. Constitution who formally elect the President and Vice President.',ex:'A candidate needs 270 electoral votes to win the presidency.'},
+  {term:'Caucus',def:'A meeting of party members to discuss and vote on candidates — an alternative to a primary election.',ex:'Iowa holds caucuses early in the presidential election cycle.'},
+  {term:'Gerrymandering',def:'Manipulating electoral district boundaries to favor one political party over another.',ex:'Gerrymandering in that state created weirdly shaped districts.'},
+  {term:'Incumbent',def:'A politician who currently holds a political office and is running for re-election.',ex:'The incumbent senator won her third term by a wide margin.'},
+  {term:'Suffrage',def:'The right to vote in political elections.',ex:'Women\'s suffrage was achieved in the U.S. with the 19th Amendment in 1920.'},
+  {term:'Swing State',def:'A U.S. state where either party could plausibly win, making it a focus of campaign attention.',ex:'Pennsylvania and Michigan are classic swing states.'},
+  {term:'Recount',def:'A second count of votes in an election, typically requested when results are very close.',ex:'The razor-thin margin triggered an automatic recount.'},
+  {term:'Proportional Representation',def:'An electoral system where parties receive parliamentary seats proportional to their share of the total vote.',ex:'Germany uses proportional representation in its federal elections.'},
+  {term:'Mandate',def:'The authority granted to an elected official by the voters to carry out their stated policies.',ex:'Winning by 20 points gave her a clear mandate to reform healthcare.'},
+  {term:'Runoff',def:'A second election held when no candidate wins a required majority in the first round.',ex:'Neither candidate got 50% so a runoff was scheduled for next month.'},
+  {term:'Poll Worker',def:'A person who assists with voting at a polling station on election day.',ex:'Thousands of poll workers volunteered to help run the election.'},
+  {term:'Exit Poll',def:'A survey conducted as voters leave polling stations, used to predict election outcomes.',ex:'Exit polls predicted a close race, and the final result confirmed it.'},
+  {term:'Plurality',def:'When a candidate wins more votes than any other candidate, but not necessarily a majority.',ex:'With three candidates, she won with 40% — a plurality, not a majority.'},
+  {term:'Delegate',def:'A person chosen to represent and vote on behalf of others, such as at a party convention.',ex:'Each state sends delegates to the national convention.'},
+  {term:'Landslide',def:'An election won by an overwhelmingly large majority of votes.',ex:'His landslide victory gave him 48 of the 50 states.'},
+  {term:'Voter Registration',def:'The process by which eligible citizens sign up to vote before an election.',ex:'She registered to vote online three weeks before the election.'},
+  {term:'Absentee Ballot',def:'A ballot cast by a voter who cannot be present at their polling place on election day.',ex:'Living abroad, he always uses an absentee ballot.'},
+  {term:'Constituency',def:'A specific geographic area whose residents are represented by an elected official.',ex:'The MP campaigned hard in the northern constituencies.'},
+];
+
+let fcState={idx:0,learned:new Set(),review:new Set(),flipped:false};
+
+function initFlashcards(){
+  fcState={idx:0,learned:new Set(),review:new Set(),flipped:false};
+  renderFlashcard();
+}
+function renderFlashcard(){
+  const el=document.getElementById('flashcard-inner');
+  const {idx,learned}=fcState;
+  const card=flashcardData[idx];
+  const pct=Math.round(learned.size/flashcardData.length*100);
+  el.innerHTML=`
+    <div class="fc-progress"><div class="fc-progress-bar" style="width:${pct}%"></div></div>
+    <div class="flashcard-scene">
+      <div class="flashcard" id="fc-card" onclick="flipCard()">
+        <div class="fc-front">
+          <h3>${card.term}</h3>
+          <p>Click to reveal definition</p>
+        </div>
+        <div class="fc-back">
+          <p>${card.def}</p>
+          <p class="fc-example">"${card.ex}"</p>
+        </div>
+      </div>
+    </div>
+    <div class="fc-controls">
+      <button class="fc-btn review" onclick="markCard('review')">👎 Review again</button>
+      <span class="fc-counter">${idx+1} / ${flashcardData.length} · ${learned.size} learned</span>
+      <button class="fc-btn know" onclick="markCard('learned')">👍 Got it!</button>
+    </div>
+    <div style="text-align:center;margin-top:1rem">
+      <button class="back-btn" onclick="fcNav(-1)">← Prev</button>
+      <button class="back-btn" style="margin-left:.5rem" onclick="fcNav(1)">Next →</button>
+    </div>
+  `;
+  fcState.flipped=false;
+}
+function flipCard(){
+  const c=document.getElementById('fc-card');
+  fcState.flipped=!fcState.flipped;
+  c.classList.toggle('flipped',fcState.flipped);
+}
+function markCard(type){
+  if(type==='learned')fcState.learned.add(fcState.idx);
+  else fcState.review.add(fcState.idx);
+  fcNav(1);
+}
+function fcNav(dir){
+  fcState.idx=(fcState.idx+dir+flashcardData.length)%flashcardData.length;
+  renderFlashcard();
+}
+
+// ─── VOTER JOURNEY ─────────────────────────────────────────────
+const journeyNodes={
+  start:{
+    scene:'It\'s <strong>Election Day</strong>! You\'re 18 years old and this is your first time voting. You wake up excited but a little nervous. What do you do first?',
+    choices:[
+      {text:'Check if I\'m registered to vote',next:'registered'},
+      {text:'Head straight to the polling station',next:'not_registered'},
+    ]
+  },
+  registered:{
+    scene:'Smart move! You check online and confirm you\'re registered. You find your <strong>polling station address</strong> and the hours. Do you bring ID?',
+    choices:[
+      {text:'Yes, I grab my ID and head out',next:'with_id'},
+      {text:'No, I didn\'t think I needed it',next:'no_id'},
+    ]
+  },
+  not_registered:{
+    scene:'When you arrive at the polling station, the poll worker checks the rolls and <strong>can\'t find your name</strong>. You\'re not registered!',
+    choices:[
+      {text:'Ask about same-day registration',next:'same_day'},
+      {text:'Leave without voting',next:'bad_end'},
+    ]
+  },
+  with_id:{
+    scene:'At the polling station, a poll worker checks your ID and finds you on the roll. They hand you a <strong>ballot</strong>. You step into a private booth. How do you fill it out?',
+    choices:[
+      {text:'Research candidates and vote confidently',next:'voted'},
+      {text:'Rush through without reading carefully',next:'rushed'},
+    ]
+  },
+  no_id:{
+    scene:'The poll worker explains that your state requires ID, but offers you a <strong>provisional ballot</strong> — a special ballot that will be counted after your identity is verified.',
+    choices:[
+      {text:'Accept the provisional ballot',next:'provisional'},
+      {text:'Decide it\'s too complicated and leave',next:'bad_end'},
+    ]
+  },
+  same_day:{
+    scene:'Great thinking! The worker explains your state has <strong>same-day registration</strong>. You fill out a form, show your ID, and receive a ballot.',
+    choices:[
+      {text:'Cast my vote!',next:'voted'},
+    ]
+  },
+  provisional:{
+    scene:'You cast your <strong>provisional ballot</strong>. The worker gives you a receipt and explains you can check online to confirm it was counted once your identity is verified.',
+    choices:[
+      {text:'Thank them and leave — vote counted!',next:'voted'},
+    ]
+  },
+  voted:{
+    scene:'You carefully review your ballot, make your selections, and feed it into the ballot box (or scanner). A poll worker hands you your <strong>"I Voted"</strong> sticker. 🎉',
+    choices:[
+      {text:'Celebrate — I voted!',next:'great_end'},
+    ]
+  },
+  rushed:{
+    scene:'You fill out your ballot quickly but realize you accidentally skipped one race. <strong>Ballot is already submitted</strong>. Remember: next time, take your time!',
+    choices:[
+      {text:'Still counts — I voted!',next:'ok_end'},
+    ]
+  },
+  bad_end:{
+    scene:'You head home without voting. You feel you missed out. The good news? <strong>Next election, you\'ll be prepared.</strong>',
+    choices:[],
+    end:{icon:'📋',title:'Lesson learned!',desc:'Registration and preparation are key. Set a reminder to register early next time — many states allow online registration weeks before Election Day.'}
+  },
+  great_end:{
+    scene:'',
+    choices:[],
+    end:{icon:'🗳️',title:'You did it! First vote cast!',desc:'You researched, prepared, brought your ID, and voted successfully. Your voice is now part of the democratic process. Every vote shapes the future.'}
+  },
+  ok_end:{
+    scene:'',
+    choices:[],
+    end:{icon:'✅',title:'Vote counted!',desc:'You voted! Next time, take a few extra minutes to review each race on the ballot. Bring a cheat sheet if it helps — many states allow you to bring notes.'}
+  }
+};
+
+let journeyNode='start';
+
+function initJourney(){
+  journeyNode='start';
+  renderJourney();
+}
+function renderJourney(){
+  const el=document.getElementById('journey-inner');
+  const node=journeyNodes[journeyNode];
+  if(node.end){
+    el.innerHTML=`<div class="journey-card"><div class="journey-end">
+      <div class="big-emoji">${node.end.icon}</div>
+      <h3>${node.end.title}</h3>
+      <p>${node.end.desc}</p>
+      <button class="btn-primary" onclick="initJourney()">Play Again</button>
+    </div></div>`;
+    return;
+  }
+  el.innerHTML=`<div class="journey-card">
+    <div class="journey-scene">${node.scene}</div>
+    <div class="journey-choices">
+      ${node.choices.map(c=>`<button class="journey-choice" onclick="journeyChoose('${c.next}')">${c.text}</button>`).join('')}
+    </div>
+  </div>`;
+}
+function journeyChoose(next){
+  journeyNode=next;
+  renderJourney();
+}
+
+// ─── AI CHAT ───────────────────────────────────────────────────
+const suggestions=['How does the Electoral College work?','What is gerrymandering?','How do I register to vote?','What happens if results are disputed?','What is proportional representation?'];
+const chatHistory=[];
+
+function buildChat(){
+  const sugEl=document.getElementById('chat-suggestions');
+  sugEl.innerHTML=suggestions.map(s=>`<button class="chat-sug" onclick="sendSuggestion('${s}')">${s}</button>`).join('');
+  addMsg('bot','Hello! I\'m your election guide 🗳️ Ask me anything about how elections work — from voter registration to vote counting. What would you like to know?');
+}
+function addMsg(role,text){
+  const el=document.getElementById('chat-messages');
+  const div=document.createElement('div');
+  div.className=`msg ${role}`;
+  div.textContent=text;
+  el.appendChild(div);
+  el.scrollTop=el.scrollHeight;
+}
+function sendSuggestion(text){
+  document.getElementById('chat-input').value=text;
+  sendChat();
+}
+async function sendChat(){
+  const input=document.getElementById('chat-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  addMsg('user',text);
+  chatHistory.push({role:'user',content:text});
+  const typing=document.createElement('div');
+  typing.className='msg bot typing';
+  typing.textContent='Thinking…';
+  document.getElementById('chat-messages').appendChild(typing);
+  document.getElementById('chat-messages').scrollTop=9999;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:600,
+        system:'You are ElectED, a friendly and knowledgeable civic education assistant. You ONLY answer questions about elections, voting, democracy, electoral systems, political processes, voter rights, and related civic topics. If someone asks about anything else, politely redirect them to election topics. Keep answers clear, non-partisan, educational, and under 150 words. Use simple language appropriate for first-time voters.',
+        messages:chatHistory
+      })
+    });
+    const data=await res.json();
+    typing.remove();
+    const reply=data.content?.[0]?.text||'Sorry, I couldn\'t get a response. Please try again.';
+    addMsg('bot',reply);
+    chatHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    typing.remove();
+    addMsg('bot','I\'m having trouble connecting right now. Please try again in a moment!');
+  }
+}
+buildChat();
+
+// ─── INIT ──────────────────────────────────────────────────────
+document.querySelectorAll('section').forEach(s=>{
+  if(s.id!=='sec-home')s.style.display='none';
+});
+</script>
+</body>
+</html>
