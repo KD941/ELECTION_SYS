@@ -1,5 +1,8 @@
 'use strict';
 
+// Load .env for local development (no-op in production where vars are injected)
+require('dotenv').config();
+
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -102,21 +105,47 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
       });
     }
 
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
-      systemInstruction: SYSTEM_PROMPT,
-      generationConfig: {
-        maxOutputTokens: 300,
-        temperature: 0.7,
-      },
+    // Model cascade: try primary, fall back to lighter model on quota errors
+    const MODEL_CASCADE = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+
+    let lastError = null;
+    for (const modelName of MODEL_CASCADE) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+          systemInstruction: SYSTEM_PROMPT,
+          generationConfig: {
+            maxOutputTokens: 300,
+            temperature: 0.7,
+          },
+        });
+
+        const chat = model.startChat({ history: safeHistory });
+        const result = await chat.sendMessage(sanitized);
+        const reply = result.response.text();
+        return res.json({ reply });
+
+      } catch (err) {
+        const is429 = err?.status === 429 ||
+                      (err?.message || '').includes('429') ||
+                      (err?.message || '').includes('quota') ||
+                      (err?.message || '').includes('Too Many Requests');
+
+        if (is429) {
+          console.warn(`Quota hit on ${modelName}, trying next model...`);
+          lastError = err;
+          continue; // try next model in cascade
+        }
+        throw err; // non-quota error — surface immediately
+      }
+    }
+
+    // All models in cascade exhausted — quota fully exceeded
+    console.error('All models quota exceeded:', lastError?.message?.substring(0, 120));
+    return res.status(429).json({
+      error: 'The AI assistant is temporarily busy due to high demand. Please try again in a minute, or explore the Timeline and Glossary sections in the meantime!',
     });
 
-    // Build chat with history
-    const chat = model.startChat({ history: safeHistory });
-    const result = await chat.sendMessage(sanitized);
-    const reply = result.response.text();
-
-    return res.json({ reply });
   } catch (err) {
     console.error('Chat error:', err?.message || err);
     return res.status(500).json({
