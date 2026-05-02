@@ -153,36 +153,36 @@ document.addEventListener('keydown', e => {
 // TIMELINE
 // ═══════════════════════════════════════════════════════════════
 const TIMELINE_DATA = [
-  { num:1, badge:'pre', badgeText:'Pre-Election', title:'Candidate Announcement', icon:'',
-    summary:'Potential candidates officially announce their intention to run, forming campaign committees and beginning fundraising.',
-    detail:'Candidates file paperwork with the electoral commission, declare their candidacy publicly, and begin assembling their campaign team — including campaign managers, communications directors, and fundraisers. This phase can start years before the actual election.'},
-  { num:2, badge:'pre', badgeText:'Pre-Election', title:'Primary Elections / Caucuses', icon:'',
-    summary:'Voters within each party choose their preferred candidate through primaries (direct voting) or caucuses (public meetings).',
-    detail:'Primaries are state-run elections where any registered party member can vote privately. Caucuses are party-organized public gatherings where voters openly group by candidate preference. Winners earn "delegates" who represent them at the national convention.'},
-  { num:3, badge:'pre', badgeText:'Pre-Election', title:'Party Conventions & Nominations', icon:'',
-    summary:'Each major party holds a national convention where delegates formally nominate their presidential and vice-presidential candidates.',
-    detail:'Conventions are also where parties adopt their official platform — a detailed document outlining their policy positions and goals for the country. Running mates are typically announced just before or during the convention.'},
-  { num:4, badge:'pre', badgeText:'Campaign', title:'General Election Campaign', icon:'',
-    summary:'Nominated candidates campaign nationwide — holding rallies, debating opponents, and running advertisements.',
-    detail:'This phase includes presidential debates (and VP debates), intense media coverage, and billions in advertising spending. Campaign strategy focuses heavily on swing states or key constituencies that could go either way.'},
-  { num:5, badge:'vote', badgeText:'Election', title:'Voter Registration Deadline', icon:'',
-    summary:'Most regions require voters to register ahead of time. Deadlines vary — usually 15–30 days before Election Day.',
-    detail:'Registration confirms your eligibility to vote and ensures your name appears on the official voter roll at your polling place. Some places offer same-day registration on Election Day itself. Check your state or country\'s specific rules at your electoral authority\'s website.'},
-  { num:6, badge:'vote', badgeText:'Election', title:'Election Day Voting', icon:'',
-    summary:'Registered voters cast their ballots at polling stations or via mail/absentee ballots. Democracy in action.',
-    detail:'Polling stations open in the morning and close in the evening. Officials check voter IDs, guide voters through the ballot, and ensure the process is secure and accessible. Many jurisdictions also allow early voting in the days leading up to Election Day.'},
-  { num:7, badge:'post', badgeText:'Post-Election', title:'Vote Counting & Certification', icon:'',
-    summary:'Ballots are counted by election officials. Results are certified by state/national authorities — often taking days.',
-    detail:'Absentee and mail-in ballots may take longer to process than in-person votes. Either candidate can request a recount if the margin is extremely close. Election observers (domestic and international) monitor this process for fairness.'},
-  { num:8, badge:'post', badgeText:'Post-Election', title:'Electoral College Vote (U.S.)', icon:'',
-    summary:'In the U.S., electors in the Electoral College cast official votes for president based on their state\'s results.',
-    detail:'Electors are generally pledged to vote for the candidate who won their state. Most states use a winner-take-all model; Maine and Nebraska use proportional allocation. A candidate needs 270 of 538 electoral votes to win.'},
-  { num:9, badge:'post', badgeText:'Post-Election', title:'Congressional Certification', icon:'',
-    summary:'Congress meets in a joint session to officially count and certify electoral votes, formally confirming the result.',
-    detail:'The Vice President presides over this joint session. Objections can be raised by members of Congress, but they require a majority vote in both chambers to be sustained — an extremely high bar.'},
-  { num:10, badge:'post', badgeText:'Post-Election', title:'Inauguration Day', icon:'',
-    summary:'The winner is officially sworn into office, takes the constitutional oath, and delivers an inaugural address to the nation.',
-    detail:'In the U.S., Inauguration Day is January 20th. The outgoing president facilitates a peaceful transfer of power — a cornerstone of democratic governance. The incoming president\'s first acts and speech set the tone for their administration.'},
+  { num:1, badge:'pre', badgeText:'Pre-Election', title:'Election Commission Announcement', icon:'🗳️',
+    summary:'The Election Commission of India (ECI) announces the election schedule, triggering the Model Code of Conduct immediately.',
+    detail:'The ECI, an independent constitutional body under Article 324, issues the election schedule including polling dates, nomination deadlines, and result dates. The moment the schedule is announced, the Model Code of Conduct (MCC) comes into force — restricting the ruling government from making policy announcements, using government machinery for campaigns, or launching new schemes that could influence voters.'},
+  { num:2, badge:'pre', badgeText:'Pre-Election', title:'Nomination of Candidates', icon:'📋',
+    summary:'Candidates file their nomination papers with the Returning Officer, along with security deposits and sworn affidavits.',
+    detail:'For Lok Sabha elections, general category candidates deposit ₹25,000 and SC/ST candidates deposit ₹12,500. Every candidate must submit a statutory affidavit (Form 26) disclosing criminal antecedents, assets, liabilities, and educational qualifications — making this information public. Independent candidates require 10 proposers from the constituency.'},
+  { num:3, badge:'pre', badgeText:'Pre-Election', title:'Scrutiny & Withdrawal of Nominations', icon:'🔍',
+    summary:'The Returning Officer examines all nominations for validity. Candidates may withdraw within a specified window.',
+    detail:'After scrutiny, candidates who find the contest unviable may withdraw by the last date for withdrawal. After this date, the final list of contesting candidates is published. The ECI allots election symbols — recognised national and state parties get reserved symbols (e.g., BJP\'s lotus, Congress\'s hand), while independent and smaller party candidates get symbols from a pool.'},
+  { num:4, badge:'pre', badgeText:'Campaign', title:'Election Campaign Period', icon:'📣',
+    summary:'Political parties and candidates campaign across constituencies — subject to strict spending limits and the Model Code of Conduct.',
+    detail:'The campaign period typically lasts 2–3 weeks. Lok Sabha candidates can spend a maximum of ₹95 lakh per constituency (in larger states). The MCC prohibits: bribery, appealing to voters on communal/caste lines, use of government vehicles/aircraft for campaigning, and booth-capturing. Campaigning ends 48 hours before polling (the "silent period").'},
+  { num:5, badge:'vote', badgeText:'Election', title:'Voter Verification & EPIC Cards', icon:'🪪',
+    summary:'Eligible voters must be on the Electoral Roll and possess valid identity proof — most commonly the Voter ID (EPIC) card.',
+    detail:'India uses Electronic Photo Identity Cards (EPIC), issued free of cost by the ECI. Voters not yet issued EPIC can use 12 alternative documents including Aadhaar, PAN card, passport, driving licence, bank passbook with photo, and MNREGA job card. The electoral roll is prepared ward/village-wise by the Booth Level Officer (BLO), and citizens can check or update their registration at voterportal.eci.gov.in.'},
+  { num:6, badge:'vote', badgeText:'Election', title:'Election Day — EVM Voting', icon:'🗳️',
+    summary:'Voters cast ballots using Electronic Voting Machines (EVMs) at their designated polling booths. India pioneered EVM use globally.',
+    detail:'India uses EVMs manufactured by BEL and ECIL — standalone, non-networked, battery-operated machines not connected to the internet. Since 2019, every EVM is paired with a Voter Verifiable Paper Audit Trail (VVPAT) that prints a paper slip showing the candidate and symbol voted for, which the voter can verify for 7 seconds. Polling typically runs 7 AM to 6 PM. Officials stamp your finger with indelible ink to prevent double voting.'},
+  { num:7, badge:'vote', badgeText:'Election', title:'Phased Polling (India\'s Multi-Phase System)', icon:'📅',
+    summary:'General Elections are conducted in multiple phases across different states to allow adequate deployment of security forces.',
+    detail:'India\'s General Elections are the world\'s largest democratic exercise — over 96 crore (960 million) eligible voters in 2024. The election is held in phases (e.g., 7 phases in 2024) so that central paramilitary forces can be deployed across all states for security. Different states poll on different dates, with results declared together after the final phase.'},
+  { num:8, badge:'post', badgeText:'Post-Election', title:'Counting of Votes & Results', icon:'📊',
+    summary:'Votes are counted at counting centres on a designated date. EVM results are cross-checked with VVPAT slips.',
+    detail:'Counting happens under strict security. For each Assembly/Lok Sabha segment, 5 randomly selected VVPAT slip counts are cross-matched with EVM totals as a mandatory audit. Candidates and their counting agents are present. The Returning Officer declares the winner by issuing a formal certificate of election. Results are simultaneously uploaded to the ECI website in real-time.'},
+  { num:9, badge:'post', badgeText:'Post-Election', title:'Formation of Government', icon:'🏛️',
+    summary:'The party or coalition winning a majority (272+ seats in Lok Sabha) forms the government. The President invites the leader to be Prime Minister.',
+    detail:'If one party wins a clear majority of 272 seats in the 543-seat Lok Sabha, its leader is invited by the President. If no single party wins a majority (hung Parliament), coalition negotiations begin. The leader who can demonstrate majority support is invited to form the government. The Prime Minister is sworn in at Rashtrapati Bhavan by the President of India.'},
+  { num:10, badge:'post', badgeText:'Post-Election', title:'Swearing-In Ceremony', icon:'🎖️',
+    summary:'The Prime Minister and Council of Ministers are sworn in by the President of India at Rashtrapati Bhavan.',
+    detail:'The President administers the oath of office and secrecy to the Prime Minister and each Cabinet Minister. Ministers take an oath to uphold the Constitution, discharge duties faithfully, and maintain secrecy of Cabinet proceedings. The newly formed government then presents itself before Parliament and wins a vote of confidence within 30 days.'},
 ];
 
 function buildTimeline() {
@@ -252,22 +252,22 @@ function toggleExpand(card) {
 // ROLES
 // ═══════════════════════════════════════════════════════════════
 const ROLES_DATA = [
-  { icon:'V', bg:'#0d1f3c', title:'The Voter',
-    desc:'The most important participant in any democracy. Eligible citizens cast ballots to select their representatives. Voting is both a fundamental right and a civic responsibility.' },
-  { icon:'C', bg:'#1a5c33', title:'The Candidate',
-    desc:'A person who runs for elected office. Candidates build campaign teams, raise funds, develop policy platforms, hold public events, and ask voters for their support.' },
-  { icon:'P', bg:'#283593', title:'Political Parties',
-    desc:'Organizations that share ideological values and nominate candidates for election. They coordinate campaign strategy, develop policy platforms, and mobilize voters.' },
-  { icon:'E', bg:'#5c3317', title:'Electoral Commission',
-    desc:'An independent government body that oversees elections — managing voter rolls, certifying candidates, running polling stations, and certifying results.' },
-  { icon:'M', bg:'#6a1e55', title:'The Media',
-    desc:'Journalists, newspapers, TV networks, and digital outlets inform the public about candidates, policies, debates, and results. A free press is essential to democracy.' },
-  { icon:'O', bg:'#1a4a5c', title:'Election Observers',
-    desc:'Trained monitors who watch the election process to verify it is free, fair, and transparent. They report irregularities to authorities and the public.' },
-  { icon:'W', bg:'#4a3c17', title:'Poll Workers',
-    desc:'Trained volunteers or employees who staff polling stations — verifying voter IDs, distributing ballots, maintaining order, and ensuring the process runs smoothly.' },
-  { icon:'D', bg:'#1a3a5c', title:'Campaign Donors & Funders',
-    desc:'Individuals, organisations, or PACs that provide financial support to candidates. Campaign finance rules vary significantly by country.' },
+  { icon:'🗳️', bg:'#0d1f3c', title:'The Voter',
+    desc:'Every Indian citizen aged 18 or above who is registered on the Electoral Roll can vote. Voting is a fundamental right under Article 326 of the Constitution. Your EPIC card (Voter ID) is your key to the polling booth.' },
+  { icon:'🏛️', bg:'#1a5c33', title:'Election Commission of India (ECI)',
+    desc:'An independent constitutional body under Article 324, headed by the Chief Election Commissioner. The ECI manages the entire election process — issuing the schedule, enforcing the Model Code of Conduct, recognising parties, allotting symbols, and certifying results.' },
+  { icon:'🎯', bg:'#283593', title:'The Candidate',
+    desc:'Any Indian citizen who meets constitutional eligibility — age 25+ for Lok Sabha/Vidhan Sabha, 30+ for Rajya Sabha/Vidhan Parishad — can contest. Candidates file nominations with the Returning Officer, submit Form 26 affidavits, and pay a security deposit.' },
+  { icon:'🏳️', bg:'#5c3317', title:'Political Parties',
+    desc:'The ECI recognises parties as National, State, or Registered-Unrecognised. Recognised parties get reserved election symbols and free time on Doordarshan/AIR. The Anti-Defection Law (10th Schedule) prevents elected members from switching parties after winning.' },
+  { icon:'📋', bg:'#6a1e55', title:'Returning Officer (RO)',
+    desc:'A senior government official (usually District Collector) appointed for each constituency. The RO receives nominations, conducts scrutiny, oversees polling, supervises counting, and formally declares the winning candidate by issuing a certificate of election.' },
+  { icon:'🔵', bg:'#1a4a5c', title:'Election Observers',
+    desc:'Senior IAS, IPS, and IRS officers deployed by the ECI to independently monitor elections in constituencies. General Observers check overall conduct; Expenditure Observers track campaign spending; Police Observers oversee law and order.' },
+  { icon:'🤝', bg:'#4a3c17', title:'Booth Level Officers (BLOs)',
+    desc:'Government employees responsible for a cluster of polling booths — updating the electoral roll, removing dead/migrated voters, and enrolling new eligible voters. BLOs are the grassroots link between citizens and the electoral system.' },
+  { icon:'⚖️', bg:'#1a3a5c', title:'Micro-Observers & Polling Personnel',
+    desc:'Presiding Officers and Polling Officers (usually government teachers and officials) staff each polling booth. They verify voter identity, operate EVMs, apply indelible ink, and maintain a complete record of the day\'s proceedings in Form 17C.' },
 ];
 
 function buildRoles() {
@@ -313,36 +313,36 @@ function backToGames() {
 // GAME 1: True or False Buzz
 // ═══════════════════════════════════════════════════════════════
 const QUIZ_DATA = [
-  { q:'You must be a registered voter to cast a ballot in most elections.', a:true,
-    explain:'Registration confirms eligibility and places you on the official voter roll. Some states offer same-day registration, but most require signing up in advance.' },
-  { q:'The candidate with the most popular votes always wins the U.S. presidency.', a:false,
-    explain:'The U.S. uses the Electoral College. A candidate can win the most votes nationally but lose the election, as happened in 2000 and 2016.' },
-  { q:'Primary elections determine which candidate represents their party in the general election.', a:true,
-    explain:'Primaries let party members or registered voters choose their preferred candidate before the main nationwide election.' },
-  { q:'Gerrymandering means drawing district boundaries to give one party an unfair advantage.', a:true,
-    explain:'The term comes from Governor Elbridge Gerry who approved oddly shaped districts in 1812.' },
-  { q:'The U.S. President is limited to two terms in office by the Constitution.', a:true,
-    explain:'The 22nd Amendment (ratified 1951) limits the President to two four-year terms.' },
-  { q:'Absentee ballots are only for people who are physically unable to go to a polling station.', a:false,
-    explain:'Many states allow any registered voter to request an absentee or mail-in ballot without a special reason.' },
-  { q:'Exit polls are conducted as voters leave the polling station after casting their ballot.', a:true,
-    explain:'Exit polls sample voters as they exit — used to predict results before official counting is complete.' },
-  { q:'Proportional representation means parties receive seats roughly equal to their vote share.', a:true,
-    explain:'Unlike winner-take-all systems, proportional representation lets smaller parties gain seats based on vote percentage.' },
-  { q:'A "swing state" is one that reliably votes for the same party every election.', a:false,
-    explain:'Swing states are competitive — they could go to either party, making them key campaign targets.' },
-  { q:'In a plurality voting system, a candidate needs more than 50% of votes to win.', a:false,
-    explain:'Plurality (first-past-the-post) means the candidate with the MOST votes wins — even without a majority.' },
-  { q:'A runoff election occurs when no candidate wins the required majority in the first round.', a:true,
-    explain:'Runoffs narrow the field to the top two candidates for a second round.' },
-  { q:'The electoral college was established by the U.S. Bill of Rights.', a:false,
-    explain:'The Electoral College was established by Article II, Section 1 of the Constitution — not the Bill of Rights.' },
-  { q:'Voter suppression refers to strategies that make it harder for certain groups to vote.', a:true,
-    explain:'Voter suppression tactics have included strict ID laws, poll taxes, limited polling hours, and purging voter rolls.' },
-  { q:'A landslide victory means a candidate won by a very small margin.', a:false,
-    explain:'A landslide is an overwhelming electoral victory — winning by a very large margin.' },
-  { q:'Same-day voter registration exists in some U.S. states.', a:true,
-    explain:'Over 20 U.S. states allow voters to register at the polls on Election Day.' },
+  { q:'The minimum age to vote in Indian elections is 18 years.', a:true,
+    explain:'The 61st Constitutional Amendment (1989) lowered the voting age from 21 to 18 years. Any Indian citizen aged 18 or above on the qualifying date can register to vote.' },
+  { q:'The Election Commission of India is a permanent, independent constitutional body.', a:true,
+    explain:'The ECI is established under Article 324 of the Constitution. It is independent of the government — the Chief Election Commissioner can only be removed through a process similar to removing a Supreme Court judge.' },
+  { q:'India uses paper ballots in all General Elections today.', a:false,
+    explain:'India uses Electronic Voting Machines (EVMs) in all elections. EVMs were first used nationwide in the 2004 General Elections. They are paired with VVPATs since 2019 for added transparency.' },
+  { q:'A candidate contesting a Lok Sabha seat must be at least 25 years old.', a:true,
+    explain:'Article 84(b) of the Constitution requires Lok Sabha candidates to be at least 25. For Rajya Sabha, the age is 30. For the President and Vice President, it is also 35.' },
+  { q:'The Model Code of Conduct (MCC) has statutory backing under Indian law.', a:false,
+    explain:'The MCC is a set of guidelines evolved through consensus — it does NOT have statutory backing. However, it is enforced by the ECI using its powers under Articles 324 and other election laws. Violations can lead to candidate disqualification or FIRs.' },
+  { q:'Indelible ink used on voters\' fingers during Indian elections is manufactured in Mysuru, Karnataka.', a:true,
+    explain:'The Mysore Paints and Varnish Limited (MPVL), a Government of Karnataka enterprise, is the sole manufacturer of the indelible ink used in Indian elections — a tradition since 1962.' },
+  { q:'In India, a candidate forfeits their security deposit if they fail to secure 1/6 of the total valid votes.', a:true,
+    explain:'A Lok Sabha candidate forfeits the ₹25,000 security deposit if they fail to get more than 1/6 (about 16.67%) of the total valid votes polled in their constituency.' },
+  { q:'India uses the Proportional Representation system for Lok Sabha elections.', a:false,
+    explain:'Lok Sabha and all Vidhan Sabha elections use First-Past-the-Post (FPTP) — the candidate with the most votes wins. Proportional Representation (Single Transferable Vote) is used only for Rajya Sabha and President/Vice President elections.' },
+  { q:'The Voter Verifiable Paper Audit Trail (VVPAT) was first used in all constituencies in the 2019 General Elections.', a:true,
+    explain:'VVPAT machines were used in all 543 Lok Sabha constituencies for the first time in the 2019 General Elections. They allow voters to see a paper slip confirming their vote for 7 seconds before it falls into a sealed box.' },
+  { q:'A person convicted and sentenced to 2 or more years in prison is disqualified from contesting elections.', a:true,
+    explain:'Under Section 8 of the Representation of the People Act 1951, a person convicted of certain offences and sentenced to imprisonment of 2 years or more is disqualified from contesting for 6 years after serving the sentence.' },
+  { q:'The "silent period" before Indian elections means no campaigning is allowed 48 hours before polling.', a:true,
+    explain:'Section 126 of the Representation of the People Act 1951 prohibits election campaigning — including public meetings, processions, and TV/radio ads — within 48 hours of the close of polling.' },
+  { q:'Political parties in India must declare all donations above ₹20,000 to the ECI.', a:true,
+    explain:'Under Section 29C of the RPA 1951, parties must report contributions above ₹20,000 to the ECI. However, the Electoral Bond scheme (operative 2018–2024) allowed anonymous corporate donations before being struck down by the Supreme Court in February 2024.' },
+  { q:'India has reserved constituencies for Scheduled Castes (SCs) and Scheduled Tribes (STs) in Lok Sabha.', a:true,
+    explain:'The Constitution provides reserved constituencies for SCs (84 seats) and STs (47 seats) in the Lok Sabha. Only candidates belonging to these communities can contest from reserved seats, though all voters in the constituency vote.' },
+  { q:'The Chief Election Commissioner can be removed by the President of India at will.', a:false,
+    explain:'The Chief Election Commissioner enjoys security of tenure similar to a Supreme Court judge — they can only be removed through a process of impeachment by Parliament. This protects the ECI\'s independence from government pressure.' },
+  { q:'NOTA (None of the Above) option was introduced in Indian elections in 2013.', a:true,
+    explain:'The Supreme Court directed the ECI to introduce NOTA in its September 2013 judgment. NOTA was first used in five state assembly elections in November 2013. However, NOTA votes do not elect any candidate — the highest vote-getter among candidates wins even if NOTA gets more votes.' },
 ];
 
 const quizState = { cur:0, score:0, answered:false, qs:[], timer:null, timeLeft:10 };
@@ -493,14 +493,14 @@ function copyScore(score, total) {
 // GAME 2: Timeline Scramble
 // ═══════════════════════════════════════════════════════════════
 const SCRAMBLE_STEPS = [
-  'Candidate Announcement',
-  'Primary Elections / Caucuses',
-  'Party Convention & Nomination',
-  'General Election Campaign',
-  'Voter Registration Deadline',
-  'Election Day Voting',
-  'Vote Counting & Certification',
-  'Inauguration Day',
+  'ECI Announces Election Schedule & MCC',
+  'Nomination Filing by Candidates',
+  'Scrutiny & Withdrawal of Nominations',
+  'Campaign Period (max 3 weeks)',
+  'Silent Period (48 hrs before polling)',
+  'Election Day — EVM Voting',
+  'Counting of Votes & VVPAT Audit',
+  'Swearing-In of Government',
 ];
 
 let dragSrc = null;
@@ -616,26 +616,26 @@ function checkScramble() {
 // GAME 3: Term Decoder Flashcards
 // ═══════════════════════════════════════════════════════════════
 const FLASHCARD_DATA = [
-  { term:'Ballot',          def:'A document (paper or electronic) on which voters record their choices in an election.', ex:'She filled out her ballot carefully before placing it in the scanner.' },
-  { term:'Primary',         def:'An election in which voters choose a political party\'s candidate to run in the general election.', ex:'The primary narrowed five candidates down to one nominee.' },
-  { term:'Electoral College',def:'A body of electors established by the U.S. Constitution who formally elect the President and Vice President.', ex:'A candidate needs 270 of 538 electoral votes to win the presidency.' },
-  { term:'Caucus',           def:'A meeting of party members to select candidates — an alternative to a primary election.', ex:'Iowa holds its famous caucuses early in the presidential election cycle.' },
-  { term:'Gerrymandering',   def:'Manipulating electoral district boundaries to give one political party an unfair competitive advantage.', ex:'Gerrymandering created strangely shaped, non-contiguous districts.' },
-  { term:'Incumbent',        def:'A politician who currently holds office and is running for re-election.', ex:'As the incumbent senator, she had name recognition and fundraising advantages.' },
-  { term:'Suffrage',         def:'The right to vote in political elections. Also called the franchise.', ex:'Women\'s suffrage in the U.S. was achieved with the 19th Amendment in 1920.' },
-  { term:'Swing State',      def:'A U.S. state where either party could plausibly win — a key campaign target.', ex:'Pennsylvania, Michigan, and Wisconsin are classic swing states.' },
-  { term:'Recount',          def:'A second official count of votes, triggered when the margin of victory is very slim.', ex:'The 200-vote margin triggered an automatic statewide recount.' },
-  { term:'Proportional Representation', def:'An electoral system where parties receive seats proportional to their share of the vote.', ex:'Germany\'s Bundestag uses proportional representation.' },
-  { term:'Mandate',          def:'The authority granted to an elected official by voters to carry out their stated agenda.', ex:'Winning by 20 points gave her a clear mandate to pursue healthcare reform.' },
-  { term:'Runoff',           def:'A second election held when no candidate wins the required threshold in the first round.', ex:'Neither candidate won 50%, so a runoff was scheduled.' },
-  { term:'Poll Worker',      def:'A trained volunteer who assists voters and oversees the voting process at polling stations.', ex:'Thousands of poll workers staffed stations across the county.' },
-  { term:'Exit Poll',        def:'A survey of voters as they leave polling stations, used to estimate results early.', ex:'Early exit polls pointed to a very close race.' },
-  { term:'Plurality',        def:'When a candidate receives more votes than any other, but not necessarily a majority.', ex:'With three candidates, she won with just 38% — a plurality, not a majority.' },
-  { term:'Delegate',         def:'A person chosen to represent and vote on behalf of a group at a party convention.', ex:'Each state sends a proportional number of delegates to the national convention.' },
-  { term:'Absentee Ballot',  def:'A ballot cast in advance by a voter who cannot or chooses not to vote in person.', ex:'Living overseas, he always votes using an absentee ballot.' },
-  { term:'Constituency',     def:'A geographic area whose residents are represented by one elected official.', ex:'The new MP represents a constituency of 80,000 registered voters.' },
-  { term:'Voter Turnout',    def:'The percentage of eligible voters who actually cast a ballot in a given election.', ex:'Turnout hit 67% — the highest in two decades.' },
-  { term:'Redistricting',    def:'Redrawing electoral district boundaries, usually after a census.', ex:'After the 2020 census, several states underwent significant redistricting.' },
+  { term:'Electoral Roll',        def:'The official list of all eligible voters in a constituency, maintained by the Election Commission of India.', ex:'Ramesh checked the Electoral Roll online at voterportal.eci.gov.in to confirm his name before voting.' },
+  { term:'EPIC Card',             def:'Electronic Photo Identity Card — the Voter ID card issued free by the ECI to registered voters.', ex:'Priya carried her EPIC card to the polling booth to prove her identity before voting.' },
+  { term:'EVM',                   def:'Electronic Voting Machine — a standalone, battery-operated device used in all Indian elections since 2004 to record votes digitally.', ex:'The voter pressed the button next to her chosen candidate\'s name and symbol on the EVM.' },
+  { term:'VVPAT',                 def:'Voter Verifiable Paper Audit Trail — a machine attached to the EVM that prints a paper slip showing the candidate voted for, visible for 7 seconds.', ex:'After pressing the EVM button, Arun saw the VVPAT paper slip confirm his vote before it dropped into the sealed box.' },
+  { term:'Model Code of Conduct', def:'A set of guidelines issued by the ECI that governs the conduct of political parties and candidates from the announcement of elections till results.', ex:'The MCC prevented the ruling party from announcing new welfare schemes or transferring senior officials after the election schedule was released.' },
+  { term:'Lok Sabha',             def:'The lower house of Parliament — the House of the People. It has 543 elected seats; a party needs 272 to form a majority government.', ex:'After winning 303 seats in the Lok Sabha, the party had a clear majority to form the government.' },
+  { term:'Rajya Sabha',           def:'The upper house of Parliament — the Council of States. Members are elected by state legislative assemblies, not directly by the public.', ex:'The bill was passed by the Lok Sabha but faced debate in the Rajya Sabha before becoming law.' },
+  { term:'Constituency',          def:'A geographic division of the country from which one representative is elected to Parliament or a state legislature.', ex:'The candidate campaigned door-to-door across every village in her Lok Sabha constituency.' },
+  { term:'Returning Officer',     def:'A government official (usually the District Collector) responsible for conducting the election in a constituency — from nominations to declaration of results.', ex:'The Returning Officer declared the winning candidate after completing the vote count and VVPAT audit.' },
+  { term:'Anti-Defection Law',    def:'The 10th Schedule of the Constitution, which disqualifies elected members who voluntarily leave their party or vote against party directives without permission.', ex:'The MLA was disqualified under the Anti-Defection Law after voting against his party\'s whip in the state assembly.' },
+  { term:'NOTA',                  def:'None of the Above — a ballot option introduced in 2013 that allows voters to reject all candidates. NOTA does not affect the result; the leading candidate still wins.', ex:'Frustrated with all candidates, Meena pressed NOTA on the EVM — but the winning candidate was still declared.' },
+  { term:'Delimitation',          def:'The process of redrawing the boundaries of parliamentary and assembly constituencies, carried out by the Delimitation Commission after each census.', ex:'After the 2001 census, the Delimitation Commission redrew constituency boundaries to reflect population changes.' },
+  { term:'By-Election',           def:'An election held to fill a vacancy in a constituency caused by the death, resignation, or disqualification of the sitting member.', ex:'A by-election was held in the constituency after the MP passed away six months into the term.' },
+  { term:'Booth Capturing',       def:'The illegal act of seizing control of a polling booth and casting fraudulent votes — a serious electoral offence under Section 135A of the RPA 1951.', ex:'The election in that booth was cancelled and re-polled after reports of booth capturing by armed groups.' },
+  { term:'Hung Parliament',       def:'A situation where no single party or pre-election coalition wins an outright majority (272+ seats) in the Lok Sabha after a General Election.', ex:'The 1989 and 1996 elections produced hung Parliaments, leading to coalition governments and political instability.' },
+  { term:'Form 26',               def:'A statutory affidavit that every candidate must file along with their nomination, disclosing criminal records, assets, liabilities, and educational qualifications.', ex:'Voters read the Form 26 affidavit online to learn about their candidates\' declared assets before deciding whom to vote for.' },
+  { term:'Indelible Ink',         def:'A chemical ink applied to the left index finger of every voter after casting their ballot, to prevent double voting. It cannot be washed off for several weeks.', ex:'After voting, the poll officer applied indelible ink to Kavya\'s finger — a visible mark of civic participation.' },
+  { term:'Silent Period',         def:'The 48 hours before the close of polling during which all campaigning — rallies, TV ads, and social media appeals — is strictly prohibited.', ex:'The political party pulled down all its digital ads on the day the silent period began.' },
+  { term:'Reserved Constituency', def:'A parliamentary or assembly seat where only candidates from Scheduled Castes (SC) or Scheduled Tribes (ST) may contest, though all voters in the area vote.', ex:'The MP representing the reserved SC constituency championed the rights of Dalit communities in Parliament.' },
+  { term:'Voter Turnout',         def:'The percentage of registered voters who actually cast their ballot in a given election. India\'s 2024 General Election saw a turnout of about 65.79%.', ex:'High voter turnout in rural areas was credited with deciding the outcome in several closely contested constituencies.' },
 ];
 
 const fcState = { idx:0, learned:new Set(), review:new Set(), flipped:false };
@@ -711,61 +711,56 @@ function fcNav(dir) {
 // ═══════════════════════════════════════════════════════════════
 const JOURNEY_NODES = {
   start: {
-    scene: 'It\'s <strong>Election Day</strong>. You\'re 18 and this is your very first time voting. You wake up excited but a little nervous. What do you do first?',
+    scene: 'It\'s <strong>Election Day</strong> in your constituency. You are 18 and this is your very first time voting in a Lok Sabha election. You wake up excited. What do you do first?',
     choices: [
-      { text: 'Check online whether I\'m registered to vote', next: 'registered' },
-      { text: 'Head straight to the polling station',          next: 'not_registered' },
+      { text: 'Check the Electoral Roll online to confirm my name and booth number', next: 'registered' },
+      { text: 'Head straight to any polling booth nearby',                           next: 'wrong_booth' },
     ]
   },
   registered: {
-    scene: 'Smart move. You confirm you\'re registered and find your <strong>polling station address</strong> — open until 8 pm. Do you bring ID?',
+    scene: 'Smart move! You find your name on the Electoral Roll at <strong>voterportal.eci.gov.in</strong> and note your booth number. You pack your <strong>EPIC (Voter ID) card</strong>. What next?',
     choices: [
-      { text: 'Yes — grab my photo ID and head out',    next: 'with_id' },
-      { text: 'I go without — I didn\'t think I needed it', next: 'no_id' },
+      { text: 'Reach the booth, join the queue for my gender, and wait my turn', next: 'in_queue' },
+      { text: 'Try to cut the queue — I\'m in a hurry',                          next: 'queue_jump' },
     ]
   },
-  not_registered: {
-    scene: 'The poll worker searches for your name and <strong>cannot find you on the voter roll</strong>. You forgot to register before the deadline.',
+  wrong_booth: {
+    scene: 'The Polling Officer checks the voter list. <strong>Your name is not in this booth\'s list</strong> — each voter is assigned a specific booth. You must go to your correct booth.',
     choices: [
-      { text: 'Ask whether same-day registration is available', next: 'same_day' },
-      { text: 'Leave without voting — there\'s nothing I can do', next: 'bad_end' },
+      { text: 'Ask the officer for help locating my correct booth', next: 'registered' },
+      { text: 'Give up and go home without voting',                 next: 'bad_end' },
     ]
   },
-  with_id: {
-    scene: 'Your ID is verified and you\'re handed a <strong>ballot</strong>. You step into a private voting booth. How do you approach it?',
+  in_queue: {
+    scene: 'You are in the queue. The Polling Officer checks your name, verifies your <strong>EPIC card</strong>, and marks your name in the register. What happens next?',
     choices: [
-      { text: 'Take my time and read every race carefully', next: 'voted_well' },
-      { text: 'Rush through and pick quickly',             next: 'rushed' },
+      { text: 'Sign/put thumb impression in Form 17A and receive a voter slip', next: 'evm_booth' },
     ]
   },
-  no_id: {
-    scene: 'Your state requires ID. The poll worker offers a <strong>provisional ballot</strong> — it will be counted once your identity is verified.',
+  queue_jump: {
+    scene: 'The Booth Level Officer asks you to join the proper queue. <strong>Disrupting polling order is an offence</strong> under Section 132 of the RPA 1951. You rejoin the queue.',
     choices: [
-      { text: 'Accept the provisional ballot and vote', next: 'provisional' },
-      { text: 'It seems complicated — skip it',         next: 'bad_end' },
+      { text: 'Wait patiently in the correct queue', next: 'in_queue' },
     ]
   },
-  same_day: {
-    scene: 'Your state allows <strong>same-day registration</strong>. You fill out a short form and receive a provisional ballot.',
+  evm_booth: {
+    scene: 'You enter the <strong>voting compartment</strong>. The Presiding Officer activates the EVM\'s Ballot Unit. You see buttons next to candidate names and their party symbols. How do you vote?',
     choices: [
-      { text: 'Complete registration and cast my ballot', next: 'voted_well' },
+      { text: 'Press the button next to my chosen candidate — I see the VVPAT light up!', next: 'voted_well' },
+      { text: 'Press multiple buttons — I want to vote for two candidates',               next: 'multi_press' },
     ]
   },
-  provisional: {
-    scene: 'You cast your <strong>provisional ballot</strong> and receive a receipt. You can track it online to confirm it was counted.',
-    choices: [{ text: 'Thank the poll workers and leave', next: 'ok_end' }]
+  multi_press: {
+    scene: 'The EVM <strong>registers only the first press</strong> and locks automatically — you cannot vote twice on the same machine. Your vote for the first candidate you pressed has been recorded.',
+    choices: [{ text: 'I understand — the system is designed to prevent double voting', next: 'voted_well' }]
   },
   voted_well: {
-    scene: 'You carefully review every race, make your selections, and feed the ballot into the scanner. A worker hands you an <strong>"I Voted" sticker</strong>.',
-    choices: [{ text: 'Head home — your vote is cast', next: 'great_end' }]
+    scene: 'You pressed the button, saw the VVPAT paper slip show your candidate\'s name and symbol for 7 seconds, and the "beep" confirmed your vote. The officer applies <strong>indelible ink</strong> to your left index finger.',
+    choices: [{ text: 'Thank the polling staff and leave — my vote is cast!', next: 'great_end' }]
   },
-  rushed: {
-    scene: 'You rushed and accidentally <strong>left one race blank</strong>. The ballot was already submitted before you noticed.',
-    choices: [{ text: 'It still counts — lesson learned for next time', next: 'ok_end' }]
-  },
-  bad_end:   { scene:'', choices:[], end:{ icon:'', title:'Lesson Learned', desc:'You didn\'t vote this time — but now you know what to do. Register early, bring ID, and locate your polling station in advance.' } },
-  great_end: { scene:'', choices:[], end:{ icon:'', title:'First Vote Successfully Cast', desc:'You prepared well, brought your ID, read every race carefully, and voted. Your voice is now part of the democratic process.' } },
-  ok_end:    { scene:'', choices:[], end:{ icon:'', title:'Vote Recorded', desc:'You voted — that\'s what matters most. Next time bring notes or a sample ballot to review every race carefully.' } },
+  bad_end:   { scene:'', choices:[], end:{ icon:'🔔', title:'Lesson Learned', desc:'You didn\'t vote this time. Remember: check your name on the Electoral Roll at voterportal.eci.gov.in, carry your EPIC card or any of 12 valid alternative IDs, and reach your correct assigned booth.' } },
+  great_end: { scene:'', choices:[], end:{ icon:'🇮🇳', title:'पहला वोट! First Vote Cast Successfully', desc:'You checked the roll, carried your EPIC card, went to the correct booth, verified your identity, pressed the EVM button, and confirmed via VVPAT. The indelible ink on your finger is your badge of citizenship. जय हिन्द!' } },
+  ok_end:    { scene:'', choices:[], end:{ icon:'✅', title:'Vote Recorded', desc:'Your vote was cast — well done! Next time, remember to confirm your booth number in advance and bring your EPIC card or a valid alternative identity document.' } },
 };
 
 let journeyNode = 'start';
@@ -812,41 +807,43 @@ function journeyChoose(next) {
 // GLOSSARY
 // ═══════════════════════════════════════════════════════════════
 const GLOSSARY_DATA = [
-  { term:'Absentee Ballot',    def:'A ballot cast by a voter who cannot be present at their polling place. Many states allow any voter to request one.' },
-  { term:'Ballot',             def:'A document, paper or electronic, on which voters record their choices in an election.' },
-  { term:'Ballot Initiative',  def:'A process allowing citizens to place proposed legislation directly on the ballot for voters to decide.' },
-  { term:'Candidate',          def:'A person who runs for election to a public office, independently or as a party\'s nominee.' },
-  { term:'Caucus',             def:'A meeting of party members to select candidates or determine party policy — an alternative to a primary.' },
-  { term:'Constituency',       def:'A geographic area whose residents are represented by an elected official.' },
-  { term:'Delegate',           def:'A person chosen to represent a group and vote on their behalf at a party convention.' },
-  { term:'Electoral College',  def:'The body of 538 electors who formally elect the U.S. President and Vice President.' },
-  { term:'Electoral Roll',     def:'The official list of registered voters eligible to vote in an election.' },
-  { term:'Exit Poll',          def:'A survey of voters conducted as they leave polling stations to estimate election outcomes.' },
-  { term:'First Past the Post',def:'A voting system where the candidate with the most votes wins, even without a majority.' },
-  { term:'Franchise',          def:'The right to vote in public elections. Also called suffrage.' },
-  { term:'General Election',   def:'The main nationwide election in which voters choose between candidates from all parties.' },
-  { term:'Gerrymandering',     def:'Manipulating electoral district boundaries to give one party an unfair advantage.' },
-  { term:'Incumbent',          def:'A politician who currently holds office and is seeking re-election.' },
-  { term:'Inauguration',       def:'The formal ceremony in which an elected official is sworn into office.' },
-  { term:'Landslide',          def:'An election in which one candidate wins by an overwhelmingly large margin.' },
-  { term:'Mandate',            def:'The authority granted to an elected official by voters to implement their stated policies.' },
-  { term:'Nomination',         def:'The process by which a party formally selects a candidate to represent them in an election.' },
-  { term:'Party Platform',     def:'An official document stating a political party\'s positions on major policy issues.' },
-  { term:'Plurality',          def:'When a candidate wins more votes than any other but not necessarily a majority (50%+1).' },
-  { term:'Poll Worker',        def:'A trained volunteer who staffs a polling station on Election Day, assisting voters.' },
-  { term:'Polling Station',    def:'A designated location where registered voters go to cast their ballots on Election Day.' },
-  { term:'Primary Election',   def:'An election in which party members choose which candidate will represent their party in the general election.' },
-  { term:'Proportional Representation', def:'An electoral system where parties receive seats proportional to their share of the total vote.' },
-  { term:'Recount',            def:'A second official count of ballots, usually triggered when the margin of victory is very small.' },
-  { term:'Redistricting',      def:'Redrawing electoral district boundaries, typically after a census to reflect population shifts.' },
-  { term:'Runoff Election',    def:'A second election held between top candidates when no one reaches the required threshold in the first round.' },
-  { term:'Suffrage',           def:'The fundamental right to vote in political elections.' },
-  { term:'Swing State',        def:'A U.S. state that is highly competitive — either major party could win — making it a key campaign target.' },
-  { term:'Term Limit',         def:'A legal restriction on how many terms a person may hold a specific elected office.' },
-  { term:'Voter ID',           def:'Government-issued identification required in some jurisdictions to verify a voter\'s identity.' },
-  { term:'Voter Registration', def:'The process by which eligible citizens officially sign up to vote, placing their name on the electoral roll.' },
-  { term:'Voter Suppression',  def:'Strategies or policies that make it harder for certain groups of citizens to vote.' },
-  { term:'Voter Turnout',      def:'The percentage of eligible voters who actually cast a ballot in a given election.' },
+  { term:'Anti-Defection Law',      def:'The 10th Schedule of the Constitution that disqualifies elected members who defect from their party or defy its whip without authorisation.' },
+  { term:'Article 324',             def:'The constitutional provision that establishes the Election Commission of India and vests it with superintendence, direction, and control of all elections.' },
+  { term:'Article 326',             def:'The constitutional provision that grants the right to vote to every Indian citizen aged 18 or above, subject to eligibility criteria.' },
+  { term:'By-Election',             def:'An election held to fill a single vacant seat in Parliament or a state legislature caused by death, resignation, or disqualification of the sitting member.' },
+  { term:'Booth Capturing',         def:'The criminal act of seizing a polling booth and casting fraudulent votes — an offence under Section 135A of the Representation of the People Act 1951.' },
+  { term:'Booth Level Officer',     def:'A government employee responsible for a cluster of polling booths, maintaining the electoral roll and enrolling eligible voters.' },
+  { term:'Candidate',               def:'A person who contests an election. Lok Sabha candidates must be Indian citizens aged 25+, file a nomination, pay a security deposit, and submit a Form 26 affidavit.' },
+  { term:'Chief Election Commissioner', def:'The head of the Election Commission of India, enjoying security of tenure equivalent to a Supreme Court judge. Cannot be removed except by Parliamentary impeachment.' },
+  { term:'Constituency',            def:'A geographic division from which one representative is elected to Parliament (Lok Sabha) or a state legislature (Vidhan Sabha).' },
+  { term:'Delimitation',            def:'The periodic redrawing of electoral constituency boundaries by the Delimitation Commission, based on population data from the latest census.' },
+  { term:'Deposit Forfeiture',      def:'A candidate forfeits their security deposit (₹25,000 for Lok Sabha) if they fail to secure more than 1/6 of the total valid votes polled in their constituency.' },
+  { term:'Electoral Roll',          def:'The official voter list for a constituency maintained by the ECI. Citizens can check and update their registration at voterportal.eci.gov.in.' },
+  { term:'EPIC Card',               def:'Electronic Photo Identity Card — the Voter ID card issued free by the ECI. The primary identity document for voting, though 12 alternatives are also accepted.' },
+  { term:'EVM',                     def:'Electronic Voting Machine — a standalone, battery-operated, non-networked machine used to record votes in all Indian elections since 2004.' },
+  { term:'Exit Poll',               def:'A survey of voters conducted as they leave polling booths, used to predict election results before the official count. Exit polls are banned from publication during the polling period.' },
+  { term:'First Past the Post',     def:'India\'s voting system for Lok Sabha and Vidhan Sabha elections — the candidate with the most votes in a constituency wins, even without a majority.' },
+  { term:'Form 26',                 def:'A mandatory affidavit filed by every candidate disclosing criminal history, assets, liabilities, and educational qualifications — publicly available on the ECI website.' },
+  { term:'General Election',        def:'The nationwide election for all 543 Lok Sabha seats, held every 5 years. India\'s 2024 General Election involved over 96 crore eligible voters.' },
+  { term:'Hung Parliament',         def:'When no single party or pre-poll coalition wins 272+ seats in the Lok Sabha — requiring post-election coalition negotiations to form a government.' },
+  { term:'Indelible Ink',           def:'A chemical ink applied to the left index finger of every voter after casting their ballot to prevent double voting. Manufactured by MPVL, Mysuru since 1962.' },
+  { term:'Lok Sabha',               def:'The House of the People — India\'s lower house of Parliament with 543 elected seats. A majority (272+) is required to form the government.' },
+  { term:'Model Code of Conduct',   def:'Guidelines issued by the ECI upon announcement of the election schedule, governing party and candidate conduct. It lacks statutory backing but is powerfully enforced by the ECI.' },
+  { term:'NOTA',                    def:'None of the Above — the option to reject all candidates on an EVM ballot, introduced by Supreme Court order in 2013. NOTA does not prevent the highest vote-getter from winning.' },
+  { term:'Nomination',              def:'The formal process by which a candidate files papers with the Returning Officer to contest an election, along with a security deposit and Form 26 affidavit.' },
+  { term:'Observer',                def:'A senior IAS/IPS/IRS officer deployed by the ECI to independently monitor election conduct, expenditure, and law-and-order in a constituency.' },
+  { term:'Polling Booth',           def:'The designated location where voters in a specific area cast their ballots. Each booth serves approximately 1,200–1,500 voters. India had 10.5 lakh polling stations in 2024.' },
+  { term:'Rajya Sabha',             def:'India\'s upper house of Parliament — the Council of States. Members are indirectly elected by state legislative assemblies for 6-year terms.' },
+  { term:'Representation of the People Act', def:'The key legislation (passed in 1951) governing elections in India — covering qualifications, disqualifications, conduct of elections, and election offences.' },
+  { term:'Reserved Constituency',   def:'A constituency where only SC or ST candidates may contest. India has 84 reserved SC seats and 47 reserved ST seats in the Lok Sabha.' },
+  { term:'Returning Officer',       def:'The government official (usually District Collector) responsible for conducting the election in a constituency — from nominations to results declaration.' },
+  { term:'Security Deposit',        def:'A refundable fee paid by candidates on nomination: ₹25,000 for Lok Sabha (₹12,500 for SC/ST). Forfeited if less than 1/6 of votes are obtained.' },
+  { term:'Silent Period',           def:'The 48-hour window before the close of polling during which all campaigning is prohibited under Section 126 of the RPA 1951.' },
+  { term:'Symbol',                  def:'An icon allotted by the ECI to each candidate — reserved symbols for recognised parties, free symbols for others — to help illiterate voters identify candidates.' },
+  { term:'Voter Turnout',           def:'The percentage of registered voters who actually vote. India\'s 2024 Lok Sabha election turnout was approximately 65.79%.' },
+  { term:'VVPAT',                   def:'Voter Verifiable Paper Audit Trail — a device attached to EVMs that prints a paper slip displaying the candidate voted for, visible to the voter for 7 seconds.' },
+  { term:'Vidhan Sabha',            def:'A state legislative assembly. Members (MLAs) are elected by voters in state constituencies using the First Past the Post system.' },
+  { term:'Whip',                    def:'A directive issued by a political party to its elected members to vote in a specific way. Defying a whip can trigger disqualification under the Anti-Defection Law.' },
 ];
 
 let activeAZBtn = null;
@@ -968,12 +965,12 @@ function askFromGlossary(term) {
 // AI CHAT
 // ═══════════════════════════════════════════════════════════════
 const SUGGESTIONS = [
-  'How does voting work?',
-  'What is the Electoral College?',
-  'What are primaries?',
-  'How do other countries hold elections?',
-  'How do I register to vote?',
-  'What is gerrymandering?',
+  'How does voting work in India?',
+  'What is the Model Code of Conduct?',
+  'How do EVMs and VVPATs work?',
+  'What is the Anti-Defection Law?',
+  'How do I register to vote in India?',
+  'What are reserved constituencies?',
 ];
 
 let chatHistory  = [];
@@ -998,7 +995,7 @@ function buildChat() {
   }
 
   // Welcome message
-  addBotMessage('Hello! I am your Election AI, powered by Google Gemini. Ask me anything about elections, voting rights, civic processes, or democratic systems. I am here to educate — not to take political sides.');
+  addBotMessage('नमस्ते! I am your Indian Election AI, powered by Google Gemini. Ask me anything about Indian elections, the Election Commission of India, EVMs, the Representation of the People Act, voter registration, or your constitutional rights as a citizen. I am here to educate — not to take political sides.');
 }
 
 function chatInputKeydown(e) {
