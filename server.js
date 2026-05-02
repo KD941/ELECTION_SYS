@@ -165,7 +165,15 @@ app.get('*', (_req, res) => {
 });
 
 // ─── Start ────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`🗳️  ElectED running on port ${PORT}`);
-  console.log(`🤖 Gemini AI: ${GEMINI_API_KEY ? 'enabled' : 'disabled (no API key)'}`);
-});
+// Only bind a port when running as the main script (not during tests).
+// Supertest passes `app` directly to a temporary server on a random port,
+// so calling listen() here during tests is unnecessary and causes EADDRINUSE.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🗳️  ElectED running on port ${PORT}`);
+    console.log(`🤖 Gemini AI: ${GEMINI_API_KEY ? 'enabled' : 'disabled (no API key)'}`);
+  });
+}
+
+// ─── Export for testing (Supertest) ──────────────────────────────────────────
+module.exports = app;
