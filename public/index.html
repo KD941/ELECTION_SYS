@@ -31,19 +31,19 @@
   <a href="#" class="logo" data-action="nav" data-section="home" aria-label="ElectED home">Elect<span>ED</span></a>
 
   <ul class="nav-links" id="nav-links" role="list" aria-label="Site sections">
-    <li><button id="nav-home"     data-action="nav" data-section="home"     aria-current="true"  aria-label="Home">Home</button></li>
-    <li><button id="nav-timeline" data-action="nav" data-section="timeline" aria-current="false" aria-label="Election Timeline">Timeline</button></li>
-    <li><button id="nav-roles"    data-action="nav" data-section="roles"    aria-current="false" aria-label="Key Roles">Roles</button></li>
-    <li><button id="nav-games"    data-action="nav" data-section="games"    aria-current="false" aria-label="Games and Quizzes">Games</button></li>
-    <li><button id="nav-glossary" data-action="nav" data-section="glossary" aria-current="false" aria-label="Glossary">Glossary</button></li>
-    <li><button id="nav-chat"     data-action="nav" data-section="chat"     aria-current="false" aria-label="Ask AI">Ask AI</button></li>
+    <li><button id="nav-home"     type="button" data-action="nav" data-section="home"     aria-current="true"  aria-label="Home">Home</button></li>
+    <li><button id="nav-timeline" type="button" data-action="nav" data-section="timeline" aria-current="false" aria-label="Election Timeline">Timeline</button></li>
+    <li><button id="nav-roles"    type="button" data-action="nav" data-section="roles"    aria-current="false" aria-label="Key Roles">Roles</button></li>
+    <li><button id="nav-games"    type="button" data-action="nav" data-section="games"    aria-current="false" aria-label="Games and Quizzes">Games</button></li>
+    <li><button id="nav-glossary" type="button" data-action="nav" data-section="glossary" aria-current="false" aria-label="Glossary">Glossary</button></li>
+    <li><button id="nav-chat"     type="button" data-action="nav" data-section="chat"     aria-current="false" aria-label="Ask AI">Ask AI</button></li>
   </ul>
 
   <div class="nav-end">
-    <button class="theme-toggle" id="theme-toggle" data-action="theme" aria-label="Toggle dark mode">
-      <span id="theme-icon" aria-hidden="true"></span>
+    <button class="theme-toggle" id="theme-toggle" type="button" data-action="theme" aria-label="Toggle dark mode">
+      <span id="theme-icon" aria-hidden="true">🌙</span>
     </button>
-    <button class="hamburger" id="hamburger" data-action="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
+    <button class="hamburger" id="hamburger" type="button" data-action="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
       <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -68,11 +68,11 @@
         <h1>Democracy starts with<br><em>understanding</em> it.</h1>
         <p>Explore how elections work through interactive timelines, quizzes, games, a full glossary, and an AI guide — all in one place.</p>
         <div class="hero-btns">
-          <button class="btn-primary" data-action="nav" data-section="timeline">
+          <button class="btn-primary" type="button" data-action="nav" data-section="timeline">
             <span>Explore the Timeline</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <button class="btn-ghost" data-action="nav" data-section="games">Play &amp; Learn</button>
+          <button class="btn-ghost" type="button" data-action="nav" data-section="games">Play &amp; Learn</button>
         </div>
       </div>
     </div>
@@ -81,35 +81,35 @@
     <div class="section-inner">
       <p class="gap-label" aria-hidden="true">What you'll learn</p>
       <div class="home-cards" role="list">
-        <button class="feat-card" data-action="nav" data-section="timeline" role="listitem" aria-label="Election Timeline section">
+        <button class="feat-card" type="button" data-action="nav" data-section="timeline" role="listitem" aria-label="Election Timeline section">
           <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true"></div>
           <h2>Election Timeline</h2>
           <p>From announcement to inauguration — every step explained and expandable.</p>
           <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" data-action="nav" data-section="roles" role="listitem" aria-label="Key Players section">
+        <button class="feat-card" type="button" data-action="nav" data-section="roles" role="listitem" aria-label="Key Players section">
           <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true"></div>
           <h2>Key Players</h2>
           <p>Who does what? Voters, candidates, parties, officials, and media roles.</p>
           <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" data-action="nav" data-section="games" role="listitem" aria-label="Games section">
+        <button class="feat-card" type="button" data-action="nav" data-section="games" role="listitem" aria-label="Games section">
           <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true"></div>
           <h2>4 Learning Games</h2>
           <p>Quizzes, timeline scramble, flashcards, and a voter journey adventure.</p>
           <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card" data-action="nav" data-section="glossary" role="listitem" aria-label="Glossary section">
+        <button class="feat-card" type="button" data-action="nav" data-section="glossary" role="listitem" aria-label="Glossary section">
           <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true"></div>
           <h2>Glossary</h2>
           <p>Search 35+ electoral terms with plain-English definitions and examples.</p>
           <span class="feat-arrow" aria-hidden="true">→</span>
         </button>
-        <button class="feat-card feat-card--ai" data-action="nav" data-section="chat" role="listitem" aria-label="AI Chat section">
+        <button class="feat-card feat-card--ai" type="button" data-action="nav" data-section="chat" role="listitem" aria-label="AI Chat section">
           <div class="feat-card-bg" aria-hidden="true"></div>
           <div class="feat-icon" aria-hidden="true"></div>
           <h2>AI Assistant</h2>
@@ -178,28 +178,28 @@
         <h1 class="section-title">Games &amp; Quizzes</h1>
         <p class="section-sub">Each game reinforces a different part of the election process. Pick your challenge!</p>
         <div class="game-grid" role="list" aria-label="Available games">
-          <button class="game-tile" data-action="game" data-game="quiz" aria-label="Play True or False Buzz quiz" role="listitem">
+          <button class="game-tile" type="button" data-action="game" data-game="quiz" aria-label="Play True or False Buzz quiz" role="listitem">
             <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">Q&amp;A</div>
             <h2>True or False Buzz</h2>
             <p>Bust election myths with fast-paced Q&amp;A</p>
             <div class="game-badge">15 questions · timer</div>
           </button>
-          <button class="game-tile" data-action="game" data-game="scramble" aria-label="Play Timeline Scramble drag and drop game" role="listitem">
+          <button class="game-tile" type="button" data-action="game" data-game="scramble" aria-label="Play Timeline Scramble drag and drop game" role="listitem">
             <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">Order</div>
             <h2>Timeline Scramble</h2>
             <p>Put election stages in the right order</p>
             <div class="game-badge">Drag &amp; drop</div>
           </button>
-          <button class="game-tile" data-action="game" data-game="flashcards" aria-label="Play Term Decoder flashcard game" role="listitem">
+          <button class="game-tile" type="button" data-action="game" data-game="flashcards" aria-label="Play Term Decoder flashcard game" role="listitem">
             <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">Flash</div>
             <h2>Term Decoder</h2>
             <p>Master electoral vocabulary with flashcards</p>
             <div class="game-badge">20 terms · flip cards</div>
           </button>
-          <button class="game-tile" data-action="game" data-game="journey" aria-label="Play Voter Journey adventure game" role="listitem">
+          <button class="game-tile" type="button" data-action="game" data-game="journey" aria-label="Play Voter Journey adventure game" role="listitem">
             <div class="gt-bg" aria-hidden="true"></div>
             <div class="gt-icon" aria-hidden="true">Journey</div>
             <h2>Voter Journey</h2>
@@ -212,7 +212,7 @@
       <!-- Quiz Game -->
       <div id="game-quiz" class="game-area" role="region" aria-label="True or False Buzz game">
         <div class="game-header">
-          <button class="btn-outline" id="back-quiz" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <button class="btn-outline" id="back-quiz" type="button" data-action="backgame" aria-label="Back to games menu">← Back</button>
           <h2 class="game-header-title">True or False Buzz</h2>
         </div>
         <div id="quiz-inner" aria-live="polite" aria-atomic="true"></div>
@@ -221,7 +221,7 @@
       <!-- Scramble Game -->
       <div id="game-scramble" class="game-area" role="region" aria-label="Timeline Scramble game">
         <div class="game-header">
-          <button class="btn-outline" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <button class="btn-outline" type="button" data-action="backgame" aria-label="Back to games menu">← Back</button>
           <h2 class="game-header-title">Timeline Scramble</h2>
         </div>
         <p class="section-sub" style="margin-bottom:1.2rem">Drag the cards into correct chronological order. Drop into the numbered slots!</p>
@@ -231,7 +231,7 @@
       <!-- Flashcards -->
       <div id="game-flashcards" class="game-area" role="region" aria-label="Term Decoder flashcard game">
         <div class="game-header">
-          <button class="btn-outline" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <button class="btn-outline" type="button" data-action="backgame" aria-label="Back to games menu">← Back</button>
           <h2 class="game-header-title">Term Decoder</h2>
         </div>
         <p class="section-sub" style="margin-bottom:1.2rem">Click the card to flip it and reveal the definition. Mark each as learned or for review.</p>
@@ -241,7 +241,7 @@
       <!-- Voter Journey -->
       <div id="game-journey" class="game-area" role="region" aria-label="Voter Journey game">
         <div class="game-header">
-          <button class="btn-outline" data-action="backgame" aria-label="Back to games menu">← Back</button>
+          <button class="btn-outline" type="button" data-action="backgame" aria-label="Back to games menu">← Back</button>
           <h2 class="game-header-title">Voter Journey</h2>
         </div>
         <div id="journey-inner" aria-live="polite" aria-atomic="true"></div>
@@ -270,7 +270,7 @@
     </div>
     <div class="section-inner">
       <nav class="glossary-az" aria-label="Filter by letter">
-        <button class="az-btn active" data-action="az" data-letter="all" aria-label="Show all terms" aria-pressed="true">All</button>
+        <button class="az-btn active" type="button" data-action="az" data-letter="all" aria-label="Show all terms" aria-pressed="true">All</button>
       </nav>
       <div id="glossary-content" role="list" aria-label="Glossary terms"></div>
     </div>
@@ -296,7 +296,7 @@
             placeholder="Ask about elections…"
             maxlength="1000"
             autocomplete="off">
-          <button class="chat-send" id="chat-send-btn" aria-label="Send message">
+          <button class="chat-send" id="chat-send-btn" type="button" data-action="chat-send" aria-label="Send message">
             <span>Send</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 2.5L2.5 7l4 2 2 4 5-11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           </button>

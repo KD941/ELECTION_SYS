@@ -29,41 +29,53 @@ function showSection(id) {
   const nav = document.getElementById('nav-links');
   const ham = document.getElementById('hamburger');
   if (nav) nav.classList.remove('open');
-  if (ham) { ham.setAttribute('aria-expanded', 'false'); ham.textContent = '☰'; }
+  if (ham) {
+    ham.setAttribute('aria-expanded', 'false');
+    ham.innerHTML = HAM_ICON_CLOSED;
+  }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ─── DARK MODE ───────────────────────────────────────────────────────────────
+function setThemeIcon(dark) {
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = dark ? '☀️' : '🌙';
+}
+
 function toggleTheme() {
   const html = document.documentElement;
   const dark = html.getAttribute('data-theme') !== 'dark';
   html.setAttribute('data-theme', dark ? 'dark' : 'light');
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = dark ? '☀️' : '🌙';
+  setThemeIcon(dark);
   try { localStorage.setItem('elected-theme', dark ? 'dark' : 'light'); } catch(e) {}
 }
 
-// Respect saved pref or system preference
+// Respect saved pref or system preference — also sets icon for both modes
 (function initTheme() {
   let pref;
   try { pref = localStorage.getItem('elected-theme'); } catch(e) {}
   if (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches) pref = 'dark';
-  if (pref === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    const icon = document.getElementById('theme-icon');
-    if (icon) icon.textContent = '☀️';
-  }
+  const dark = pref === 'dark';
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  // Icon set after DOM ready (script is at end of body, so getElementById works)
+  document.addEventListener('DOMContentLoaded', () => setThemeIcon(dark), { once: true });
+  // Fallback: if DOMContentLoaded already fired (shouldn't happen here but safe)
+  if (document.readyState !== 'loading') setThemeIcon(dark);
 })();
 
 // ─── HAMBURGER ───────────────────────────────────────────────────────────────
+// Use innerHTML to set icon so we don't clobber child SVG nodes
+const HAM_ICON_OPEN   = '<svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1L17 13M1 13L17 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const HAM_ICON_CLOSED = '<svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
 function toggleNav() {
   const links = document.getElementById('nav-links');
   const ham   = document.getElementById('hamburger');
   if (!links || !ham) return;
   const open  = links.classList.toggle('open');
   ham.setAttribute('aria-expanded', open ? 'true' : 'false');
-  ham.textContent = open ? '✕' : '☰';
+  ham.innerHTML = open ? HAM_ICON_OPEN : HAM_ICON_CLOSED;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -107,6 +119,18 @@ document.addEventListener('click', e => {
 
     // Glossary → chat
     case 'glos-ask': { askFromGlossary(t.dataset.term); break; }
+
+    // Chat send — routed through delegation so it works even before buildChat()
+    case 'chat-send': { sendChat(); break; }
+
+    // Chat suggestion pills (also via delegation)
+    case 'chat-sug': {
+      if (!chatBuilt) buildChat();
+      const input = document.getElementById('chat-input');
+      if (input) input.value = t.dataset.text;
+      sendChat();
+      break;
+    }
   }
 });
 
@@ -957,36 +981,28 @@ let chatHistory  = [];
 function buildChat() {
   chatBuilt = true;
 
-  // Suggestion pills
+  // Suggestion pills — data-action="chat-sug" is handled by global delegation
   const sugsEl = document.getElementById('chat-suggestions');
   if (sugsEl) {
     sugsEl.innerHTML = SUGGESTIONS.map(s =>
-      `<button class="chat-sug" data-action="chat-sug" data-text="${s}">${s}</button>`
+      `<button class="chat-sug" type="button" data-action="chat-sug" data-text="${s}">${s}</button>`
     ).join('');
-
-    sugsEl.addEventListener('click', e => {
-      const btn = e.target.closest('[data-action="chat-sug"]');
-      if (!btn) return;
-      const input = document.getElementById('chat-input');
-      if (input) input.value = btn.dataset.text;
-      sendChat();
-    });
   }
 
-  // Send button
-  const sendBtn = document.getElementById('chat-send-btn');
-  if (sendBtn) sendBtn.addEventListener('click', sendChat);
-
-  // Enter key
+  // Enter key on chat input
   const input = document.getElementById('chat-input');
   if (input) {
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
-    });
+    // Guard against double-binding if somehow called twice
+    input.removeEventListener('keydown', chatInputKeydown);
+    input.addEventListener('keydown', chatInputKeydown);
   }
 
   // Welcome message
   addBotMessage('Hello! I am your Election AI, powered by Google Gemini. Ask me anything about elections, voting rights, civic processes, or democratic systems. I am here to educate — not to take political sides.');
+}
+
+function chatInputKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
 }
 
 function addBotMessage(text) {
